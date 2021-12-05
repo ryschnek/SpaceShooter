@@ -1,0 +1,127 @@
+\BOOKMARK [1][-]{section.1}{Module Hierarchy}{}% 1
+\BOOKMARK [1][-]{section.2}{MIS of the Asteroids Module}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{Uses}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Syntax}{section.2}% 4
+\BOOKMARK [3][-]{subsubsection.2.2.1}{Exported Types}{subsection.2.2}% 5
+\BOOKMARK [3][-]{subsubsection.2.2.2}{Exported Access Programs}{subsection.2.2}% 6
+\BOOKMARK [2][-]{subsection.2.3}{Semantics}{section.2}% 7
+\BOOKMARK [3][-]{subsubsection.2.3.1}{State Variables}{subsection.2.3}% 8
+\BOOKMARK [3][-]{subsubsection.2.3.2}{Environmental variables}{subsection.2.3}% 9
+\BOOKMARK [3][-]{subsubsection.2.3.3}{Assumptions}{subsection.2.3}% 10
+\BOOKMARK [3][-]{subsubsection.2.3.4}{Access Routine Semantics}{subsection.2.3}% 11
+\BOOKMARK [1][-]{section.3}{MIS of the Spawns Module}{}% 12
+\BOOKMARK [2][-]{subsection.3.1}{Uses}{section.3}% 13
+\BOOKMARK [2][-]{subsection.3.2}{Syntax}{section.3}% 14
+\BOOKMARK [3][-]{subsubsection.3.2.1}{Exported Types}{subsection.3.2}% 15
+\BOOKMARK [3][-]{subsubsection.3.2.2}{Exported Access Programs}{subsection.3.2}% 16
+\BOOKMARK [2][-]{subsection.3.3}{Semantics}{section.3}% 17
+\BOOKMARK [3][-]{subsubsection.3.3.1}{State Variables}{subsection.3.3}% 18
+\BOOKMARK [3][-]{subsubsection.3.3.2}{Environmental variables}{subsection.3.3}% 19
+\BOOKMARK [3][-]{subsubsection.3.3.3}{Assumptions}{subsection.3.3}% 20
+\BOOKMARK [3][-]{subsubsection.3.3.4}{Access Routine Semantics}{subsection.3.3}% 21
+\BOOKMARK [1][-]{section.4}{MIS of the Animations Module}{}% 22
+\BOOKMARK [2][-]{subsection.4.1}{Uses}{section.4}% 23
+\BOOKMARK [2][-]{subsection.4.2}{Syntax}{section.4}% 24
+\BOOKMARK [3][-]{subsubsection.4.2.1}{Exported Types}{subsection.4.2}% 25
+\BOOKMARK [3][-]{subsubsection.4.2.2}{Exported Access Programs}{subsection.4.2}% 26
+\BOOKMARK [2][-]{subsection.4.3}{Semantics}{section.4}% 27
+\BOOKMARK [3][-]{subsubsection.4.3.1}{State Variables}{subsection.4.3}% 28
+\BOOKMARK [3][-]{subsubsection.4.3.2}{Environmental variables}{subsection.4.3}% 29
+\BOOKMARK [3][-]{subsubsection.4.3.3}{Assumptions}{subsection.4.3}% 30
+\BOOKMARK [1][-]{section.5}{MIS of the Player Module}{}% 31
+\BOOKMARK [2][-]{subsection.5.1}{Uses}{section.5}% 32
+\BOOKMARK [2][-]{subsection.5.2}{Syntax}{section.5}% 33
+\BOOKMARK [3][-]{subsubsection.5.2.1}{Exported Types}{subsection.5.2}% 34
+\BOOKMARK [3][-]{subsubsection.5.2.2}{Exported Access Programs}{subsection.5.2}% 35
+\BOOKMARK [2][-]{subsection.5.3}{Semantics}{section.5}% 36
+\BOOKMARK [3][-]{subsubsection.5.3.1}{State Variables}{subsection.5.3}% 37
+\BOOKMARK [3][-]{subsubsection.5.3.2}{Environmental variables}{subsection.5.3}% 38
+\BOOKMARK [3][-]{subsubsection.5.3.3}{Assumptions}{subsection.5.3}% 39
+\BOOKMARK [3][-]{subsubsection.5.3.4}{Access Routine Semantics}{subsection.5.3}% 40
+\BOOKMARK [1][-]{section.6}{MIS of the Player\137Control Module}{}% 41
+\BOOKMARK [2][-]{subsection.6.1}{Uses}{section.6}% 42
+\BOOKMARK [2][-]{subsection.6.2}{Syntax}{section.6}% 43
+\BOOKMARK [3][-]{subsubsection.6.2.1}{Exported Types}{subsection.6.2}% 44
+\BOOKMARK [3][-]{subsubsection.6.2.2}{Exported Access Programs}{subsection.6.2}% 45
+\BOOKMARK [3][-]{subsubsection.6.2.3}{State Variables}{subsection.6.2}% 46
+\BOOKMARK [3][-]{subsubsection.6.2.4}{Environmental variables}{subsection.6.2}% 47
+\BOOKMARK [3][-]{subsubsection.6.2.5}{Assumptions}{subsection.6.2}% 48
+\BOOKMARK [3][-]{subsubsection.6.2.6}{Access Routine Semantics}{subsection.6.2}% 49
+\BOOKMARK [1][-]{section.7}{MIS of the Ability Module}{}% 50
+\BOOKMARK [2][-]{subsection.7.1}{Uses}{section.7}% 51
+\BOOKMARK [2][-]{subsection.7.2}{Syntax}{section.7}% 52
+\BOOKMARK [3][-]{subsubsection.7.2.1}{Exported Types}{subsection.7.2}% 53
+\BOOKMARK [3][-]{subsubsection.7.2.2}{Exported Access Programs}{subsection.7.2}% 54
+\BOOKMARK [2][-]{subsection.7.3}{Semantics}{section.7}% 55
+\BOOKMARK [3][-]{subsubsection.7.3.1}{State Variables}{subsection.7.3}% 56
+\BOOKMARK [3][-]{subsubsection.7.3.2}{Environmental variables}{subsection.7.3}% 57
+\BOOKMARK [3][-]{subsubsection.7.3.3}{Assumptions}{subsection.7.3}% 58
+\BOOKMARK [3][-]{subsubsection.7.3.4}{Access Routine Semantics}{subsection.7.3}% 59
+\BOOKMARK [1][-]{section.8}{MIS of the Move Module}{}% 60
+\BOOKMARK [2][-]{subsection.8.1}{Uses}{section.8}% 61
+\BOOKMARK [2][-]{subsection.8.2}{Syntax}{section.8}% 62
+\BOOKMARK [3][-]{subsubsection.8.2.1}{Exported Types}{subsection.8.2}% 63
+\BOOKMARK [3][-]{subsubsection.8.2.2}{Exported Access Programs}{subsection.8.2}% 64
+\BOOKMARK [2][-]{subsection.8.3}{Semantics}{section.8}% 65
+\BOOKMARK [3][-]{subsubsection.8.3.1}{State Variables}{subsection.8.3}% 66
+\BOOKMARK [3][-]{subsubsection.8.3.2}{Environmental variables}{subsection.8.3}% 67
+\BOOKMARK [3][-]{subsubsection.8.3.3}{Assumptions}{subsection.8.3}% 68
+\BOOKMARK [3][-]{subsubsection.8.3.4}{Access Routine Semantics}{subsection.8.3}% 69
+\BOOKMARK [1][-]{section.9}{MIS of the Player\137Hide Module}{}% 70
+\BOOKMARK [2][-]{subsection.9.1}{Uses}{section.9}% 71
+\BOOKMARK [2][-]{subsection.9.2}{Syntax}{section.9}% 72
+\BOOKMARK [3][-]{subsubsection.9.2.1}{Exported Types}{subsection.9.2}% 73
+\BOOKMARK [3][-]{subsubsection.9.2.2}{Exported Access Programs}{subsection.9.2}% 74
+\BOOKMARK [2][-]{subsection.9.3}{Semantics}{section.9}% 75
+\BOOKMARK [3][-]{subsubsection.9.3.1}{State Variables}{subsection.9.3}% 76
+\BOOKMARK [3][-]{subsubsection.9.3.2}{Environmental variables}{subsection.9.3}% 77
+\BOOKMARK [3][-]{subsubsection.9.3.3}{Assumptions}{subsection.9.3}% 78
+\BOOKMARK [3][-]{subsubsection.9.3.4}{Access Routine Semantics}{subsection.9.3}% 79
+\BOOKMARK [1][-]{section.10}{MIS of the Overheat\137Control Module}{}% 80
+\BOOKMARK [2][-]{subsection.10.1}{Uses}{section.10}% 81
+\BOOKMARK [2][-]{subsection.10.2}{Syntax}{section.10}% 82
+\BOOKMARK [3][-]{subsubsection.10.2.1}{Exported Types}{subsection.10.2}% 83
+\BOOKMARK [3][-]{subsubsection.10.2.2}{Exported Access Programs}{subsection.10.2}% 84
+\BOOKMARK [2][-]{subsection.10.3}{Semantics}{section.10}% 85
+\BOOKMARK [3][-]{subsubsection.10.3.1}{State Variables}{subsection.10.3}% 86
+\BOOKMARK [3][-]{subsubsection.10.3.2}{Environmental variables}{subsection.10.3}% 87
+\BOOKMARK [3][-]{subsubsection.10.3.3}{Assumptions}{subsection.10.3}% 88
+\BOOKMARK [3][-]{subsubsection.10.3.4}{Access Routine Semantics}{subsection.10.3}% 89
+\BOOKMARK [1][-]{section.11}{MIS of the Player\137Shoot Module}{}% 90
+\BOOKMARK [2][-]{subsection.11.1}{Uses}{section.11}% 91
+\BOOKMARK [2][-]{subsection.11.2}{Syntax}{section.11}% 92
+\BOOKMARK [3][-]{subsubsection.11.2.1}{Exported Types}{subsection.11.2}% 93
+\BOOKMARK [3][-]{subsubsection.11.2.2}{Exported Access Programs}{subsection.11.2}% 94
+\BOOKMARK [2][-]{subsection.11.3}{Semantics}{section.11}% 95
+\BOOKMARK [3][-]{subsubsection.11.3.1}{State Variables}{subsection.11.3}% 96
+\BOOKMARK [3][-]{subsubsection.11.3.2}{Environmental variables}{subsection.11.3}% 97
+\BOOKMARK [3][-]{subsubsection.11.3.3}{Assumptions}{subsection.11.3}% 98
+\BOOKMARK [3][-]{subsubsection.11.3.4}{Access Routine Semantics}{subsection.11.3}% 99
+\BOOKMARK [1][-]{section.12}{MIS of the Destroy Module}{}% 100
+\BOOKMARK [2][-]{subsection.12.1}{Uses}{section.12}% 101
+\BOOKMARK [2][-]{subsection.12.2}{Syntax}{section.12}% 102
+\BOOKMARK [3][-]{subsubsection.12.2.1}{Exported Types}{subsection.12.2}% 103
+\BOOKMARK [3][-]{subsubsection.12.2.2}{Exported Access Programs}{subsection.12.2}% 104
+\BOOKMARK [2][-]{subsection.12.3}{Semantics}{section.12}% 105
+\BOOKMARK [3][-]{subsubsection.12.3.1}{State Variables}{subsection.12.3}% 106
+\BOOKMARK [3][-]{subsubsection.12.3.2}{Environmental variables}{subsection.12.3}% 107
+\BOOKMARK [3][-]{subsubsection.12.3.3}{Assumptions}{subsection.12.3}% 108
+\BOOKMARK [3][-]{subsubsection.12.3.4}{Access Routine Semantics}{subsection.12.3}% 109
+\BOOKMARK [1][-]{section.13}{MIS of the Constants Module}{}% 110
+\BOOKMARK [2][-]{subsection.13.1}{Uses}{section.13}% 111
+\BOOKMARK [2][-]{subsection.13.2}{Syntax}{section.13}% 112
+\BOOKMARK [3][-]{subsubsection.13.2.1}{Exported Types}{subsection.13.2}% 113
+\BOOKMARK [3][-]{subsubsection.13.2.2}{Exported Access Programs}{subsection.13.2}% 114
+\BOOKMARK [2][-]{subsection.13.3}{Semantics}{section.13}% 115
+\BOOKMARK [3][-]{subsubsection.13.3.1}{State Variables}{subsection.13.3}% 116
+\BOOKMARK [3][-]{subsubsection.13.3.2}{Environmental variables}{subsection.13.3}% 117
+\BOOKMARK [3][-]{subsubsection.13.3.3}{Access Routine Semantics}{subsection.13.3}% 118
+\BOOKMARK [1][-]{section.14}{MIS of the IRS Space Shooter Module}{}% 119
+\BOOKMARK [2][-]{subsection.14.1}{Uses}{section.14}% 120
+\BOOKMARK [2][-]{subsection.14.2}{Syntax}{section.14}% 121
+\BOOKMARK [3][-]{subsubsection.14.2.1}{Exported Types}{subsection.14.2}% 122
+\BOOKMARK [3][-]{subsubsection.14.2.2}{Exported Access Programs}{subsection.14.2}% 123
+\BOOKMARK [2][-]{subsection.14.3}{Semantics}{section.14}% 124
+\BOOKMARK [3][-]{subsubsection.14.3.1}{State Variables}{subsection.14.3}% 125
+\BOOKMARK [3][-]{subsubsection.14.3.2}{Environmental variables}{subsection.14.3}% 126
+\BOOKMARK [3][-]{subsubsection.14.3.3}{Access Routine Semantics}{subsection.14.3}% 127

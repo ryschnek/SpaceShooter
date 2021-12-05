@@ -1,0 +1,376 @@
+\documentclass[12pt, titlepage]{article}
+
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{float}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=red,
+    urlcolor=blue
+}
+\usepackage[round]{natbib}
+
+\usepackage{lscape}
+
+\usepackage{ulem}
+\usepackage{xcolor}
+\usepackage{color,array}
+
+\title{SE 3XA3: Test Report\\Spaceshooter Remix}
+
+\author{Team \#4, IRS Development
+        \\ Ibrahim Malik maliki2
+        \\ Ryan Schnekenburger schneker
+        \\ Saad Khan khans126
+}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\pagenumbering{roman}
+\tableofcontents
+\listoftables
+\listoffigures
+
+\newpage
+
+\begin{table}[hp]
+\caption{Revision History} \label{TblRevisionHistory}
+\begin{tabularx}{\textwidth}{llX}
+\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
+\midrule
+December 1, 2018 & Rev1 & Creation of the document\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\newpage
+
+\pagenumbering{arabic}
+
+\noindent This document describes the test report from the test results for Spaceshooter Remix written by IRS Development.
+
+\section{Functional Requirements Evaluation}
+
+The purpose of these tests is to verify that the program operates based on the specifications of the SRS document especially the functional requirements. 
+
+\begin{table}[!htbp]
+\begin{tabular}[r]{|l|l|}\hline
+\textbf{Test Name} & F-1 \\ \hline
+\textbf{Initial State} &  Command Line \\ \hline
+\textbf{Input} & python IRS\_Space\_Shooter.py \\ \hline 
+\textbf{Expected Results} & A box that is HEIGHT by WIDTH will appear on the desktop. \\ \hline
+\textbf{Actual Results} & A game window appears instantly of size HEIGHT by WIDTH on the desktop.  \\ \hline            
+\end{tabular}
+\caption{Test for F-1}
+\label{Table}
+\end{table}
+
+\begin{table}[!htbp]
+\begin{tabular}[r]{|l|l|}\hline
+\textbf{Test Name} & F-2 \\ \hline
+\textbf{Initial State} &   Main menu \\ \hline
+\textbf{Input} &A keyboard press of the `enter' key. \\ \hline 
+\textbf{Expected Results} &A loading screen is displayed.\\ \hline
+\textbf{Actual Results} & Tester verified that a loading screen is displayed  on the desktop in the game window.\\ \hline            
+\end{tabular}
+\caption{Test for F-2}
+\label{Table}
+\end{table}
+
+\begin{table}[!htbp]
+\begin{tabular}[r]{|l|l|}\hline
+\textbf{Test Name} & F-3 \\ \hline
+\textbf{Initial State} &   Main menu \\ \hline
+\textbf{Input} &A keyboard press of the `q' key. \\ \hline 
+\textbf{Expected Results} &Desktop should display and the game should terminate \\ \hline
+\textbf{Actual Results} & Tester verified that the program ended.\\ \hline            
+\end{tabular}
+\caption{Test for F-3}
+\label{Table}
+\end{table}
+
+\begin{table}[!htbp]
+\begin{tabular}[r]{|l|l|}\hline
+\textbf{Test Name} & F-4 \\ \hline
+\textbf{Initial State} &   Game screen\\ \hline
+\textbf{Input} &A keyboard press of the `D' key. \\ \hline 
+\textbf{Expected Results} &The ship moves towards the right boundary of the screen \\ \hline
+\textbf{Actual Results} & Tester verified that the ship moved to the right boundary of the screen at roughly 1 cm/s while using a rule to measure speed.\\ \hline            
+\end{tabular}
+\caption{Test for F-4}
+\label{Table}
+\end{table}
+
+\begin{table}[!htbp]
+\begin{tabular}[r]{|l|l|}\hline
+\textbf{Test Name} & F-5 \\ \hline
+\textbf{Initial State} &   Game screen\\ \hline
+\textbf{Input} &A keyboard press of the `A' key. \\ \hline 
+\textbf{Expected Results} &The ship moves towards the left boundary of the screen \\ \hline
+\textbf{Actual Results} & Tester verified that the ship moved to the left boundary of the screen at roughly 1 cm/s while using a rule to measure speed.\\ \hline            
+\end{tabular}
+\caption{Test for F-5}
+\label{Table}
+\end{table}
+
+\begin{table}[!htbp]
+\begin{tabular}[r]{|l|l|}\hline
+\textbf{Test Name} & F-6 \\ \hline
+\textbf{Initial State} &   Game screen\\ \hline
+\textbf{Input} &Left-mouse click will produce bullets \\ \hline 
+\textbf{Expected Results} &The bullet will appear from the y-coordinate of HEIGHT - PLAYER\_HEIGHT at the x coordinate of the player sprite. It will travel in a negative direction towards the top of the screen. \\ \hline
+\textbf{Actual Results} & A bullet was fired from the y-coordinate of HEIGHT - PLAYER\_HEIGHT  and it travelled towards the top of the screen in a negative direction.\\ \hline            
+\end{tabular}
+\caption{Test for F-6}
+\label{Table}
+\end{table}
+
+\begin{table}[!htbp]
+\begin{tabular}[r]{|l|l|}\hline
+\textbf{Test Name} & F-12 \\ \hline
+\textbf{Initial State} &   Game screen\\ \hline
+\textbf{Input} &Left-mouse click will produce bullets \\ \hline 
+\textbf{Expected Results} &The bullet that will be fired will travel at the pygame speed value of -10 upwards to the top of the screen. \\ \hline
+\textbf{Actual Results} & A bullet was fired at roughly 1 cm/s upon the left-mouse click input.\\ \hline            
+\end{tabular}
+\caption{Test for F-12}
+\label{Table}
+\end{table}
+
+\begin{table}[!htbp]
+\begin{tabular}[r]{|l|l|}\hline
+\textbf{Test Name} & F-13 \\ \hline
+\textbf{Initial State} &   Game screen\\ \hline
+\textbf{Input} &The user score hits 800 after avoiding and destroying many asteroid objects. \\ \hline 
+\textbf{Expected Results} &Increase in the number of asteroids generated by at least 2 times the previous level.  \\ \hline
+\textbf{Actual Results} & Tester verified that there was a significant increase in the number of asteroids being produced and roughly equated to 2-3 times the number of asteroids generated as the initial level.\\ \hline            
+\end{tabular}
+\caption{Test for F-13}
+\label{Table}
+\end{table}
+
+\begin{table}[!htbp]
+\begin{tabular}[r]{|l|l|}\hline
+\textbf{Test Name} & F-7 \\ \hline
+\textbf{Initial State} &   Game screen\\ \hline
+\textbf{Input} &Left click press on mouse\\ \hline 
+\textbf{Expected Results} &After a period of time, the asteroid is no longer on the screen. \\ \hline
+\textbf{Actual Results} & Tester verified the asteroid appeared to be destroyed after successive bullets collided with it.\\ \hline            
+\end{tabular}
+\caption{Test for F-7}
+\label{Table}
+\end{table}
+
+\begin{table}[!htbp]
+\begin{tabular}[r]{|l|l|}\hline
+\textbf{Test Name} & F-8 \\ \hline
+\textbf{Initial State} &   Game screen\\ \hline
+\textbf{Input} &`A' or `D' to have the spaceship sprite come into contact with the asteroid object in the screen.\\ \hline 
+\textbf{Expected Results} &The health bar decreases after contact is made. \\ \hline
+\textbf{Actual Results} & Tester verified that there was a decrease in the health bar of 0.5-1 cm at every collision with an asteroid.\\ \hline            
+\end{tabular}
+\caption{Test for F-8}
+\label{Table}
+\end{table}
+
+\begin{table}[!htbp]
+\begin{tabular}[r]{|l|l|}\hline
+\textbf{Test Name} & F-9\\ \hline
+\textbf{Initial State} &   Game screen with a low health bar.\\ \hline
+\textbf{Input} &`A' or `D' to have the spaceship sprite come into contact with the asteroid object in the screen.\\ \hline 
+\textbf{Expected Results} &After contact is made with the asteroid the ship is no longer visible on the game screen. \\ \hline
+\textbf{Actual Results} & Tester verified at a collision at this critical health state with low health resulted in the user spaceship disappearing from the game screen for at least a few seconds.\\ \hline            
+\end{tabular}
+\caption{Test for F-9}
+\label{Table}
+\end{table}
+
+\begin{table}[!htbp]
+\begin{tabular}[r]{|l|l|}\hline
+\textbf{Test Name} & F-10 \\ \hline
+\textbf{Initial State} &    Game screen with a low health bar and one life remaining\\ \hline
+\textbf{Input} &`A' or `D' to have the spaceship sprite come into contact with the asteroid object in the screen.\\ \hline 
+\textbf{Expected Results} &Game over menu\\ \hline
+\textbf{Actual Results} & Tester verified at a collision at this critical health state with low health resulted in the termination of the game and the screen was instead at the game over menu.\\ \hline            
+\end{tabular}
+\caption{Test for F-10}
+\label{Table}
+\end{table}
+
+\begin{table}[!htbp]
+\begin{tabular}[r]{|l|l|}\hline
+\textbf{Test Name} & F-11 \\ \hline
+\textbf{Initial State} &  Game over screen\\ \hline
+\textbf{Input} &A keyboard press of `R' .\\ \hline 
+\textbf{Expected Results} &Main menu\\ \hline
+\textbf{Actual Results} & Tester verified that pressing the `R' key resulted in the screen switching to the main menu.\\ \hline            
+\end{tabular}
+\caption{Test for F-11}
+\label{Table}
+\end{table}
+
+\section{Nonfunctional Requirements Evaluation}
+
+\subsection{Usability}
+Test Name: NF-1
+\\ Results: Each team member was able to successfully clone the git repo and download the entire set of files. They were able to run the Python game on their computer using the command 'python IRS\_Space\_Shooter'  on operating systems Windows 10, Mac OS 11 and Linux. 
+
+\bigskip
+\noindent Test Name: NF-2
+\\ Results: 2 beta-testers from outside McMaster and not in engineering were chosen for this study and they were able to successfully install the game following the instructions on the README file only within 5 minutes. 
+
+\subsection{Performance}
+Test Name: NF-3
+\\ Results:  Beta testers rated the game with the criteria of ease of installation, gameplay, graphics and overall satisfaction on a scale from 1 to 10 with 1 being lowest, and 10 being highest score. The score across the 4 categories was 8 for ease of installation, 7 for gameplay, 7 for graphics and 7.5 for overall satisfaction. There was feedback on asking for a greater number of powerups and in-game objects to improve graphics. Another suggestion was asked to provide permanent high score lists. 
+
+\bigskip
+\noindent Test Name: NF-4
+\\ Results:  The same beta testers played the game on their local machines and the response of the program was recorded for each movement and input. All the interactions were instant and well below the EXEC-TIME and there was no noticeable delay for any feature in the game.
+
+\subsection{Robustness}
+Test Name: NF-5
+\\ Results:  Beta testers jammed the controls with several inputs at the same time from the mouse and keyboard pressing several buttons at once yet the game did not produce any abnormal behavior producing responses within the EXEC-TIME. The game would produce the response of the first button pressed rather than producing any other response other than the movement and behaviors that it is expected to do based on the input `A' and `D' keys and the firing of bullets from the left mouse click. This demonstrated robustness as there was no other unexpected output from these abnormal inputs.
+    
+\section{Comparison to Existing Implementation}
+The results of the systems tests showed this implementation of the game had markedly better features as it was voted 7.5 in overall experiences. The game was also stable and did not crash or display bugs, unlike the existing implementation which did not pass many of these tests especially regarding the robustness and performance. Thus, the results show that there was an improvement over the original game. 
+
+\section{Unit Testing}
+Originally there were plans to perform unit testing on certain modules to explore how the functions in them behave. However, these were scrapped in favor of manual, black box testing and as result, there was no specific unit testing that occurred.
+
+\section{Changes Due to Testing}
+The results of the non-functional tests and usability surveys prompted the creation of an improved README guide for installation and instructions for playing the game. There was also an attempt to produce a permanent high score list instead of a temporary one that is valid for the game session. That change will not be implemented in this revision but is going to be shelved for the future. Over the course of several of these tests, modifications were made to the code to allow the game to achieve the desired results of the specifications and test plan. For example, an adjustment was made on the asteroid generation after the increase in levels to accommodate for only a 2X increase in frequency to match with the specific intended goals of increased difficulty. 
+
+\section{Automated Testing}
+Most of the testing performed in this project was black box testing and several code inspections. The code uses the pygame library to create animations and display menus that are easier checked by visual, manual inspections of the output. Almost none of the modules actually contain any sort of calculations that can be further evaluated by automated testing. Integration testing was employed in evaluating the running of the game. As changes were made to the game and code was modified, the main game was executed to ensure that the addition of new code or changes did not break the game. The basic functionality of the game was intended to be intact even with the addition of new modifications in the code. The calculations of the speed of the bullets and sprites were done visually using a ruler on the screen of the testing computers rather than using an automated testing approach because it provided accurate enough results for the scope of the project and functions. The design of the game is not to produce very specific movements or demonstrate a particularly specific speed at every behavior and hence a measurement using the human eye was sufficient. This was mainly a decision made by the group because the precision of such movements was deemed superfluous to the overall objective of delivering a stable, enhanced version of the  spaceshooter game to an average user. 
+    
+\section{Trace to Requirements}
+
+\resizebox{\textwidth}{!}{
+\begin{tabular}{c c c c c c c c c c c c c c c c c c c} 
+\hline
+Test Case \# & F1 & F2 & F3 & F4 & F5 & F6 & F7 & F8 & F9 & F10 & F11 & F12 & F13 & F14 & F15 & F16 \\ [0.5ex] 
+\hline 
+F-1 & x & x & - & - & - & - & - & - & - & - & - & - & - & - & - & -   \\ 
+F-2 & - & - & x & - & - & - & - & - & - & - & - & - & - & - & - & -  \\
+F-3 & - & - & - & - & - & - & - & - & - & - & x & - & - & - & - & - \\
+F-4 & - & - & - & - & - & - & - & - & - & x & - & - & - & - & - & -  \\
+F-5 & - & - & - & - & - & - & x & - & - & - & - & - & - & - & - & -  \\
+F-6 & - & - & - & - & - & - & - & - & x & - & - & - & - & - & - & -  \\
+F-7 & - & - & - & x & x & - & - & - & - & - & - & - & - & - & - & -  \\
+F-8 & - & - & - & - & - & x & - & - & - & - & - & - & - & - & - & -   \\
+F-9 & - & - & - & - & - & - & - & - & - & - & - & x & - & x  & - & -  \\
+F-10 & - & - & - & - & - & - & - & - & - & - & - & - & x & -  & - & - \\
+F-11 & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & x  \\   
+F-12 & - & - & - & - & - & - & - & - & x & - & - & - & - & - & - & -  \\ 
+F-13 & - & - & - & - & - & - & - & - & - & - & - & - & - & - & x & -  \\ [1ex] 
+\hline 
+\end{tabular}}
+
+\bigskip
+
+\resizebox{1.1\textwidth}{!}{
+\begin{tabular}{c c c c c c c c c c c c c c c c c c c c c c c c c c c c c} 
+\hline
+Test Case \# & NF1 & NF2 & NF3 & NF4 & NF5 & NF6 & NF7 & NF8 & NF9 & NF10 & NF11 & NF12 & NF13 & NF14 & NF15 & NF16 & NF17 & NF18 & NF19 & NF20 & NF21 \\ [0.5ex] 
+\hline 
+NF-1 & - & - & - & - & - & - & - & x & - & - & x & - & x & x & x & - & - & - & - & - & - \\ 
+NF-2 & - & - & - & - & - & - & - & x & - & - & x & - & x & x & x & - & - & - & - & - & - \\
+NF-3 & x & x & x & - & x & x & - & - & - & x & - & x & - & - & - & - & x & x & - & - & x \\
+NF-4 & - & - & - & - & x & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - \\
+NF-5 & - & - & - & - & x & - & x & - & - & - & - & - & - & - & - & - & - & - & - & - & - \\ [1ex]
+\hline 
+\end{tabular}
+}
+        
+\section{Trace to Modules}    
+
+\resizebox{1.1\textwidth}{!}{
+\begin{tabular}{c c c c c c c c c c c c c} 
+\hline
+Test Case \# & M1 & M2 & M3 & M4 & M5 & M6  & M7 & M8 & M9 & M10 & M11 & M12\\ \hline 
+NF-1 & - & - & - & - & - & - & x & - & - & - & - & -   \\  
+NF-2 & - & - & - & - & - & - & x & - & - & - & - & - \\  
+NF-3 & - & - & - & - & - & - & x & - & - & - & - & - \\ 
+NF-4 & - & - & - & - & - & - & x & - & - & x & - & - \\ 
+NF-5 & - & - & - & - & - & - & x & - & - & x & x & -\\  
+F-1 & - & x & - & - & - & - & x & - & - & - & - & - \\  
+F-2 & - & x & - & - & x & - & x & - & - & - & - & -   \\  
+F-3 & - & - & - & - & - & - & x & - & - & - & - & -  \\  
+F-4& - & - & - & - & - & - & x & - & - & x & - & - \\  
+F-5& - & - & - & - & - & - & x & - & - & x & - & -  \\  
+F-6 & - & - & - & - & - & - & x & - & - & - & x & x \\  
+F-7 & - & - & - & x & x & x & x & - & - & - & x & -  \\  
+F-8 & - & - & - & x & x & - & x & x & - & x & - & - \\  
+F-9 & - & - & - & x & x & x & x & - & - & x & x & - \\  
+F-10 & - & - & - & x & x & x  & x & - & - & x & x & - \\  
+F-11 & - & - & - & - & - & - & x & - & - & - & - & - \\  
+F-12 & - & - & - & - & - & - & x & - & - & - & x & - \\  
+F-13 & - & - & x & x & x & - & x & - & - & - & - & - \\  \hline
+\end{tabular}
+}
+
+\section{Code Coverage Metrics}
+We managed to achieve 90\% code coverage as shown by the trace to modules that explains how different modules are explicitly covered by the tests. This shows how we have managed to cover the modules and the code inside of them. Every test covered some module. As a result of all the testing, each of the modules were indirectly or directly used. However, it must be noted that must of our testing was black-box testing done on the results of the functions and performed visually rather than using a testing framework like pyunit. Thus, while our actual code is checked for syntax errors and output, it is not explicitly checked line by line for each word. 
+
+\section{Acronyms, Abbreviations, and Symbols}
+    
+\begin{table}[H]
+\caption{\textbf{Table of abbreviations}} \label{Table}
+\begin{tabularx}{\textwidth}{p{3cm}X}
+\toprule
+\textbf{Abbreviation} & \textbf{Definition} \\
+\midrule
+OS &  Operating System  \\ \hline
+ product & The game that we are creating   \\ \hline
+ program & The code that our game uses to function   \\ \hline
+ ex. & example \\ \hline
+ etc. & et cetera \\ \hline
+ client & who we are creating the game for \\ \hline
+ customer & who will be consuming our game \\ \hline
+ gitlab & Gitlab repository \\ \hline
+ IDLE & The integrated development environment for python \\ \hline
+ repo & The repository that our product will be stored \\ \hline
+sprite &  The spaceship displayed on the screen representing the user's character \\ \hline
+ Git repo&  Gitlab repository \\ \hline
+player &  The human playing the game or using the software\\ \hline
+user &  The human playing the game or using the software\\ \hline
+tester & The human who is assigned the role of tester to play the game or using the software\\ \hline
+ README & Instruction document provided in the root directory \\
+\bottomrule
+\end{tabularx}
+
+\end{table}
+
+\section{Symbolic Parameters}
+
+The definition of the test cases will call for SYMBOLIC\_CONSTANTS.
+Their values are defined in this section for easy maintenance.
+    
+\begin{table}[H]
+\caption{\textbf{Table of symbolic constants}} \label{Table2}
+\begin{tabularx}{\textwidth}{p{3.5cm}X}
+\toprule
+\textbf{Abbreviation} & \textbf{Definition} \\
+\midrule
+HEIGHT &  600 pixel screen size for height\\ \hline
+WIDTH &  800 pixel screen size for height\\ \hline
+PLAYER\_HEIGHT &  The y-coordinates at which the sprite of the player is located in the game screen \\ \hline
+EXEC-TIME & 0.3 seconds \\  
+\bottomrule
+\end{tabularx}
+
+\end{table}
+
+\bibliographystyle{plainnat}
+
+\bibliography{SRS}
+
+\end{document}

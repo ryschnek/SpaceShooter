@@ -1,0 +1,2 @@
+Original game - This directory contains the link to original implementation of the game including the open source project <br/>
+Refactored - The unofficial, working directory that we updated throughout the term. Note: The final working directory is in src, which can be accessed from the main directory. 

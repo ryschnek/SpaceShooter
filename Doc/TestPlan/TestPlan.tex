@@ -1,0 +1,644 @@
+\documentclass[12pt, titlepage]{article}
+
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{float}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=red,
+    urlcolor=blue
+}
+\usepackage[round]{natbib}
+
+\usepackage{lscape}
+
+\usepackage{ulem}
+\usepackage{xcolor}
+\usepackage{color,array}
+
+\title{SE 3XA3: Test Plan\\Spaceshooter Remix}
+
+\author{Team \#4, IRS Development
+        \\ Ibrahim Malik maliki2
+        \\ Ryan Schnekenburger schneker
+        \\ Saad Khan khans126
+}
+
+\date{\today}
+
+
+\begin{document}
+
+\maketitle
+
+\pagenumbering{roman}
+\tableofcontents
+\listoftables
+\listoffigures
+
+\newpage
+
+\begin{table}[hp]
+\caption{Revision History} \label{TblRevisionHistory}
+\begin{tabularx}{\textwidth}{llX}
+\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
+\midrule
+October 3, 2018 & Rev0 & Authored by Ibrahim, Saad, Ryan\\
+November 28, 2018 & Rev1 & Updated document and added the changes recommended by TA.\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\newpage
+
+\pagenumbering{arabic}
+
+\noindent This document describes the test plan that we have developed for Spaceshooter Remix written by IRS Development.
+
+\section{General Information}
+
+\subsection{Purpose}
+The purpose of this project is to reimplement a version of the spaceshooter game into a modern remix. This will provide a sense of nostalgia for people who enjoy casual gaming and would like to play a popular, classic game. It was created for an early 90's era handheld console which is rare to find today. This game will provide the retro feel and be executed on their computer when the program is called using Python which is installed on most people's computers. There will be several types of testing to ensure the program runs correctly according to the requirements. We will test collision detection, user inputs and also game menus. There will be \sout{mutation} \textcolor{red}{manual} testing to check for optimal sensitivity for collisions between asteroids and the user's sprite and for movements to ensure all movements operate as specified. 
+
+\subsection{Scope}
+Currently, the game will run on Python 2 on many computers if pygame is installed but it will not be very stable and crash or show several bugs. Many features are lacking and it is primitive in design. It needs to be converted into a version that will work on every computer with Python 3 and increased stability to ensure it does not shut down instantly. Most of our testing will involve using validation to ensure that we are building the correct system meeting the requirements of the original game and before the programming is finally set, a series of verification processes to ensure the system will run error free.  In the future, there will be a focus on creating levels for the user where the game increases in difficulty and there will be a menu screen with instructions.
+
+\subsection{Acronyms, Abbreviations, and Symbols}
+    
+\begin{table}[H]
+\caption{\textbf{Table of Abbreviations}} \label{Table}
+\begin{tabularx}{\textwidth}{p{3cm}X}
+\toprule
+\textbf{Abbreviation} & \textbf{Definition} \\
+\midrule
+OS &  Operating System  \\ \hline
+ product & The game that we are creating   \\ \hline
+ program & The code that our game uses to function   \\ \hline
+ ex. & example \\ \hline
+ etc. & et cetera \\ \hline
+ client & who we are creating the game for \\ \hline
+ customer & who will be consuming our game \\ \hline
+ gitlab & Gitlab repository \\ \hline
+ IDLE & The integrated development environment for python \\ \hline
+ repo & The repository that our product will be stored \\ \hline
+\textcolor{red}{sprite} & \textcolor{red}{The spaceship displayed on the screen representing the user's character}  \\ \hline
+ Git repo& \textcolor{red}{Gitlab repository} \\ \hline
+\textcolor{red}{player} & \textcolor{red}{The human playing the game or using the software}\\ \hline
+\textcolor{red}{user} & \textcolor{red}{The human playing the game or using the software}\\ \hline
+\textcolor{red}{tester} & \textcolor{red}{The human who is assigned the role of tester to play the game or using the software}\\ \hline
+ README & Instruction document provided in the root directory \\
+\bottomrule
+\end{tabularx}
+
+\end{table}
+
+\begin{table}[H]
+\caption{\textbf{Table of Definitions}} \label{Table}
+
+\begin{tabularx}{\textwidth}{p{4cm}X}
+\toprule
+\textbf{Term} & \textbf{Definition}\\
+\midrule
+Integration Testing & Testing conducted over a period of time where new modules are incorporated into existing modules and the program is run again\\ \hline 
+Regression Testing & Testing conducted after integrating new functions or modules based on previously run tests \\ \hline
+Manual Testing & Testing conducted by humans \\ \hline
+Unit Testing & Each piece of code is testing individually \\ \hline
+Automated Testing & Testing conducted by software which initializes it and runs specific tests through a series of assert statements \\ \hline 
+Static Testing & Testing that does not involve program execution  \\ \hline  
+Dynamic Testing & Testing which includes having test cases run during execution\\
+\bottomrule
+\end{tabularx}
+
+\end{table}    
+
+\subsection{Overview of Document}
+This document will break down the test plan, the software description, the schedule of testing, the various types of testing tasks that need to be accomplished for functional and non-functional requirements. 
+
+\newpage
+
+\section{Plan}
+    
+\subsection{Software Description}
+The software is intended to be for entertainment in the form of a game that is played on the computer. It requires a computer with a keyboard and Python 3.5 or higher installed. The game is implemented in Python and there is a user sprite that is controlled by the arrow keys on the keyboard. The objective is to avoid as many asteroids as possible or shoot down any of them for as long as possible. The game is over when the user's spacecraft runs out of health or crashes into a lot of asteroids. There are no other inputs needed from the user other than those keyboard options. 
+
+\subsection{Test Team}
+The testing team consists of the three team members who will act as developers. These members are Ibrahim, Saad, and Ryan who will split the testing evenly to cover the different tools of testing.
+
+\subsection{Automated Testing Approach}
+There will be an opportunity to perform automated testing in addition to numerous code inspections and static testing methods we shall employ throughout the implementation of the project. A lot of the code has functions that create animations or menus for example, and the simplest way to test for that would rather be a manual, visual inspection of the output. That is an example of white box testing. There will be integration testing constantly to check if all the modules work in cohesion with each other. Every time a new module is created, integration testing will be used to reassure to the proper basic functionality of the game where it can begin and end.  In the future, there is a possibility of adding more features to the game. In that situation, we will use regression tests to re-run some of the earlier automated tests checking if they also successfully run on the newer code. 
+\newline
+\\It is a challenge to create automated testing for GUI for this pygame based python script. Most of the modules do not contain any functions with return values that can be checked with various assert statements. Instead, we need to be more creative in incorporating automated testing. As mentioned before, pytest will be set up to test functions of the code where certain outputs will be predetermined and hopefully the code reproduces the exact same output as expected. Moreover, pygame comes with a built-in unit test suite package that allows testing of certain individual parts of the code. These parts of the code will be tagged and appropriate test cases will be generated to see if the resultant output is as expected by a predetermined state or value. This is an example of black box testing. 
+\subsection{Testing Tools}
+\begin{enumerate}
+\item pytest - Ideally we will make use of the built-in pytest suite from Python to ensure the functionality of all the functions. This will help us in ensuring that every function behaves accordingly to how it should run. The pytest framework will recheck some of the outputs of these functions against a predetermined output. It will be the first line of defense against identifying functions that break and produce wrong outputs.
+\item Humans - Manual testing will be conducted by people for structured walkthroughs, code inspections, syntax checking, and hand test cases. 
+\item IDLE - This tool on the computer will quickly identify initial syntax errors when writing the Python code. If it fails to comply due to a missing syntax symbol, typically IDLE provides a description of the error in red that can be investigated. 
+\item Python pygame Unit Test Suite package - This is a test suite package that is a testing framework developed by pygame that will allow us to test individual parts of pygame. 
+\end{enumerate}
+
+\subsection{Testing Schedule}
+        
+See Gantt Chart at the following URL : \url{https://gitlab.cas.mcmaster.ca/khans126/IRS_Space_Shooter/blob/master/ProjectSchedule/IRSGanttChart.pdf}
+
+\newpage
+
+\section{System Test Description}
+
+\subsection{Tests for Functional Requirements}
+
+\subsubsection{Starting up The Game}
+        
+\paragraph{Opening The Window}
+
+\begin{enumerate}
+
+\item{F-1\\}
+
+Type: Structural, Manual, Dynamic
+                    
+Initial State: Command Line
+                    
+Input: python IRS\_Space\_Shooter.py
+                    
+Output: A box that is \sout{640 by 520} \textcolor{red}{HEIGHT by WIDTH} will appear on the desktop.
+                    
+How test will be performed: We will be running our code from the command line and take \textcolor{red}{ruler} measurements of the window that appears on the screen and we will compare what is on the window to the graphic of the main menu.
+
+\end{enumerate}
+
+\subsubsection{On the Main Menu}
+
+\paragraph{Executing the prompts}
+
+\begin{enumerate}
+
+\item{F-2\\}
+
+Type: Structural, Manual, Dynamic
+
+Initial State: Main menu
+
+Input: A keyboard press of the `enter' key.
+
+Output: A loading screen is displayed.
+
+How test will be performed: When on the main menu the `enter' key will be pressed and we will compare the screen that is displayed to our loading screen graphic file.
+
+\item{F-3\\}
+
+Type: Structural, Manual, Dynamic
+
+Initial State: Main menu
+
+Input: A keyboard press of the `q' key.
+
+Output: The window where the main menu appeared on is closed.
+
+How test will be performed: \sout{On the main menu we will take a screenshot of the desktop and then hit the `q' key. We will then compare what is now on the desktop to the screenshot to see if the window is still there.} \textcolor{red}{Tester will press `q' on the main screen and observe the behavior of the entire game. The tester will see what happens to the screen and if the game exits or terminates.}
+
+\end{enumerate}
+
+\subsubsection{Game Screen}
+
+\paragraph{Moving the Ship}
+
+\begin{enumerate}
+
+\item{F-4\\}
+
+Type: Structural, Manual, Dynamic
+
+Initial State: Game screen 
+
+Input: A keyboard press of the ' \textcolor{red}{`D'} key.
+
+Output: The ship moves towards the right boundary of the screen at \textcolor{red}{the speed of 1 cm/s at least.}
+
+How test will be performed: \sout{On the game screen we will take a screenshot of the desktop and then hit the right arrow key} \textcolor{red}{The tester will press the`D' key and compare the speed of movement of the player sprite. Using a ruler to measure on the screen, an approximation can be made on the speed of the movement of the sprite across the screen along with the direction.} 
+
+\item{F-5\\}
+
+Type: Structural, Manual, Dynamic
+
+Initial State: Game screen
+
+Input: A keyboard press of the \textcolor{red}{`A'} key.
+
+Output: The ship moves toward the left boundary of the screen at \textcolor{red}{the speed of 1 cm/s at least.}
+
+How test will be performed: \sout{On the game screen we will take a screenshot of the desktop and then hit the left arrow key} \textcolor{red}{The tester will press the `A' key and compare the speed of movement of the player sprite. Using a ruler to measure on the screen, an approximation can be made on the speed of the movement of the sprite across the screen along with the direction.} 
+
+\item{F-13\\}
+
+\textcolor{red}{Type:  Structural, Manual, Dynamic}
+
+ \textcolor{red}{ Initial State: Game screen}
+
+ \textcolor{red}{ Input: The user score hits 800 after avoiding and destroying many asteroid objects.}
+
+ \textcolor{red}{Output: Increase in the number of asteroids generated by at least 2 times the previous level. }
+
+\textcolor{red}{How test will be performed: The number of asteroids appearing on the screen per minute will be counted and tallied. A stopwatch externally will take the time and a manual check of the frequency of asteroids falling or generated from the screen will be performed.  }
+
+\end{enumerate}
+
+\paragraph{Shooting}
+
+\begin{enumerate}
+
+\item{F-6\\}
+
+Type: Structural, Manual, Dynamic
+
+Initial State: Game screen
+
+Input: \sout{A keyboard press of the 'spacebar'} \textcolor{red}{Left-mouse click will produce bullets.} 
+
+Output: \sout{A bullet is fired, originating at the ship towards the top of the game screen.} \textcolor{red}{The bullet will appear from the y-coordinate of HEIGHT - PLAYER\_HEIGHT at the x coordinate of the player sprite. It will travel in a negative direction towards the top of the screen. } 
+
+How test will be performed: On the game screen we \sout{will tap the spacebar} \textcolor{red}{will tap on the left-click. Once bullets are fired we will visually check for the accuracy of the origin of these bullets. Manual testing will be used for this purpose and we will observe using humans the behavior of these objects.}  \sout{and take a screenshot as quickly as possible. We will then wait for a short time then take another screenshot while the bullet is still on the screen. We will compare the two screenshots and observe where the bullet originated from the first screenshot and the difference of positions of the bullet.}
+
+\item {F-12\\}
+
+\textcolor{red}{Type: Structural, Manual}
+
+\textcolor{red}{Initial State: Game Screen}
+
+\textcolor{red}{Input: Left-mouse click will produce bullets. }
+
+\textcolor{red}{Output: The bullet that will be fired will travel at the pygame speed value of -10 upwards to the top of the screen. This should equate to roughly 1 cm/s traveling up.}
+
+\textcolor{red}{How the Test will be performed: The tester will attempt to fire bullets using the left click of their mouse. The rate of movement of the bullet will be then observed. A ruler can be used on the screen to estimate the total height of the screen, and a stopwatch can be used by a second tester to evaluate the time taken for the bullet to cross the screen.}
+
+\item{F-7\\}
+
+Type: Structural, Dynamic, Manual
+
+Initial State: On the game screen with an asteroid in the ship's line of sight.
+
+Input: \sout{A keyboard press of the 'spacebar'} \textcolor{red}{Left click press on mouse}
+
+Output: After a period of time, the asteroid is no longer on the screen.
+
+How test will be performed: On the game screen we will tap the  \textcolor{red}{left click on a mouse} \sout{spacebar} while an asteroid is coming straight towards us. \sout{We will then quickly take a screenshot. We will wait for a short time and take another screenshot making sure that the bullet crossed the path of the asteroid. We will compare the two screenshots to observe if the asteroid that was hit is still present and observe the score.}  \textcolor{red}{Using manual testing, it will be visually observed if the asteroid is removed from the game screen after the user interacts with the left mouse click.}
+
+\end{enumerate}
+
+\paragraph{Taking Damage}
+
+\begin{enumerate}
+
+\item{F-8\\}
+
+Type: Structural, Dynamic, Manual
+
+Initial State: Game screen with an asteroid about to make contact with the ship.
+
+Input: \sout{Right or Left arrow keys to ensure contact is made with the asteroid} \textcolor{red}{`A' or `D' to have the spaceship sprite come into contact with the asteroid object in the screen.}
+
+Output: The health bar decreases after contact is made. \textcolor{red}{This decrease in health bar should not be more than 1 cm.}
+
+How the test will be performed: \sout{On the game screen we will take a screenshot of the desktop. We will guide the ship into an asteroid using the right and left arrow keys. We will take a screenshot of the resulting game screen and compare the health bar of the two screenshots.}\textcolor{red}{We will observe using human testers to see if the health bar decreases at all after a collision between the user sprite and the asteroid object after guiding the spacecraft into the path of oncoming asteroids.}
+
+\end{enumerate}
+
+\paragraph{Dying}
+
+\begin{enumerate}
+
+\item{F-9\\}
+
+Type: Structural, Dynamic, Manual
+
+Initial State: Game screen with a low health bar.
+
+Input: \sout{Right or Left arrow keys} \textcolor{red}{Use `A' and `D' for movement to ensure contact} is made with an asteroid.
+
+Output: After contact is made with the asteroid the ship is no longer visible on the game screen.
+
+How the Test will be performed: \sout{ On the game screen we will take a screenshot of the desktop. We will guide the ship into an asteroid using the right and left arrow keys. We will take a screenshot of the resulting game screen and compare the two screenshots to observe the ship and the number of lives of the two screenshots.} \textcolor{red}{Using a human tester, we will drive the health bar to as low as possible by colliding with several asteroids. Ideally, the health bar will not be more than 0.5-1 cm in length as verified by the human eye. In this state of low health, the tester will purposely collide with one more asteroid to witness the interaction. Several iterations of this interaction will occur as this test will be repeated for many different sizes of asteroids to ensure consistency amongst behaviors.}
+
+\item{F-10\\}
+
+Type: Structural, Dynamic, Manual
+
+Initial State: Game screen with a low health bar and one life remaining
+
+Input: \sout{Right or Left arrow keys to ensure contact is made with an asteroid} \textcolor{red}{Use `A' and `D' for movement to ensure contact is made with an asteroid. }
+
+Output: After contact is made with the asteroid, the game over menu is displayed.
+
+How the Test will be performed: \sout{On the game screen, we will guide the ship into an asteroid using the right and left arrow keys. We will compare what is on the screen to the graphic file of the main menu.} \textcolor{red}{The tester guides the sprite towards any of the oncoming asteroids. Then they observe what happens to the gameplay and if the game is still continuing in this mode after the collision.}
+
+\end{enumerate}
+
+\paragraph{Restarting}
+
+\begin{enumerate}
+
+\item{F-11\\}
+
+Type: Structural, Dynamic, Manual
+
+Initial State: \sout{Game Screen} \textcolor{red}{Game over screen}
+
+Input: A keyboard press of `R' 
+
+Output: \textcolor{red}{The game returns to the main menu.}
+
+How the Test will be performed: \sout{On the Game Screen we will take a screenshot of the desktop. Next we will hit the 'r' key. We will take a screenshot of the result. We will compare the scores of the two screenshots.} \textcolor{red}{The tester will lose the game on purpose running out of lives. Once the game over screen is displayed, they will press the `R' key on their keyboard and observe what happens to the screen of the game.}
+
+\end{enumerate}
+
+\newpage
+
+\subsection{Tests for Nonfunctional Requirements}
+
+\subsubsection{Usability}
+        
+\paragraph{Testing of installation and maintainability}
+
+\begin{enumerate}
+
+\item{NF-1\\}
+
+Type: Structural, Static, Manual
+                    
+Initial State: Program is downloaded into the computer from GitLab repository and installed on the computer. 
+                    
+Input/Condition: Program is launched via command line using the command 'python IRS\_Space\_Shooter'  on operating systems Windows 10, Mac OS 11 and Linux. 
+                    
+Output/Result: The program should instantly execute resulting in a small window with the game running.
+                    
+How test will be performed: Each team member has one distinct operating system and will clone the repository. The program will be run on each of the computers via command line and executed to ensure that it is running correctly on those particular systems. 
+                    
+\item{NF-2\\}
+
+Type: Structural, Static, Manual
+                    
+Initial State: The program will be downloaded but nothing will be installed on the computer. 
+                    
+Input/Condition: The users will be asked to install the software and launch the game without assistance and reading the README file if necessary. 
+                    
+Output: The majority of the users should be able to install the program in 5 minutes or less.
+                    
+How test will be performed: Beta-testers will be selected from a group of people who are outside the class or engineering stream with basic knowledge of computers. They will be asked to download the game on their computers. Once they are ready, a stopwatch will begin to record the time it takes for them to launch the programs on their computers (includes installation time). 
+
+\end{enumerate}
+
+\paragraph{Satisfaction Requirements (Look and feel)}
+
+\begin{enumerate}
+
+\item{NF-3\\}
+
+Type: Structural, Static, Manual
+                    
+Initial State: The program is launched in the user's computer and the user is facing the opening screen of the program. 
+                    
+Input/Condition: The users will be asked to play the game itself and rate the program based on the criteria of ease of installation, gameplay, graphics and overall satisfaction on a scale from 1 to 10 with 1 being lowest, and 10 being highest score.
+                    
+Output: The results of the survey with 4 categories should be an average score of 7 with no category scoring between 1-3.
+                    
+How the test will be performed: Beta-testers from the previous test will also be provided with a small page in the form of an anonymous questionnaire that will explain all the categories and how to grade them. The grades from 1-3 represent 'Poor', 4 represents 'Below average', 5-6 represent 'Adequate', 7 represents 'Slightly better than average', 8-9 represent 'Above expectations' while 10 should be 'Excellent' The average is calculated from the 4 categories.
+
+\end{enumerate}
+
+\subsubsection{Performance}
+        
+\paragraph{Responsiveness}
+
+\begin{enumerate}
+
+\item{NF-4\\}
+
+Type: Structural, Dynamic, Manual
+                    
+Initial State: The program is launched and the game begins with all the default settings.
+                    
+Input/Condition: The game is started and played using the keyboard
+                    
+Output/Result: Responses of the sprite are instant and under the EXEC-TIME.
+                    
+How the test will be performed: Beta-testers are asked to play the game on a computer with a keyboard. The reaction time of the game is noted as they use the controls of the game. It will also be measured by a stopwatch and by eye to ensure that the response of the interactions is instant to the human eye. 
+
+\item{NF-5\\}
+
+Type: Structural, Dynamic, Manual
+                    
+Initial State: The program is launched and the game begins with all the default settings.
+                    
+Input/Condition: The game is started and played using the keyboard but several keys on the keyboard are pressed at the same time. 
+                    
+Output/Result: Responses of the sprite are instant and under the EXEC-TIME but only one interaction occurs per keyboard hit and this is non-deterministically chosen by the computer.
+                    
+How the test will be performed: Beta-testers are asked to play the game on a computer with a keyboard. The game will be sort of stress-tested with several inputs being simultaneously being thrown at it via the selection of multiple keys being hit by the user.
+
+\end{enumerate}
+
+\newpage
+
+\subsection{Traceability Between Test Cases and Requirements}
+
+\resizebox{\textwidth}{!}{
+\begin{tabular}{c c c c c c c c c c c c c c c c c c c} 
+\hline
+Test Case \# & F1 & F2 & F3 & F4 & F5 & F6 & F7 & F8 & F9 & F10 & F11 & F12 & F13 & F14 & F15 & F16 \\ [0.5ex] 
+\hline 
+F-1 & x & x & - & - & - & - & - & - & - & - & - & - & - & - & - & -   \\ 
+F-2 & - & - & x & - & - & - & - & - & - & - & - & - & - & - & - & -  \\
+F-3 & - & - & - & - & - & - & - & - & - & - & x & - & - & - & - & - \\
+F-4 & - & - & - & - & - & - & - & - & - & x & - & - & - & - & - & -  \\
+F-5 & - & - & - & - & - & - & x & - & - & - & - & - & - & - & - & -  \\
+F-6 & - & - & - & - & - & - & - & - & x & - & - & - & - & - & - & -  \\
+F-7 & - & - & - & x & x & - & - & - & - & - & - & - & - & - & - & -  \\
+F-8 & - & - & - & - & - & x & - & - & - & - & - & - & - & - & - & -   \\
+F-9 & - & - & - & - & - & - & - & - & - & - & - & x & - & x  & - & -  \\
+F-10 & - & - & - & - & - & - & - & - & - & - & - & - & x & -  & - & - \\
+F-11 & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & x  \\   
+F-12 & - & - & - & - & - & - & - & - & x & - & - & - & - & - & - & -  \\ 
+F-13 & - & - & - & - & - & - & - & - & - & - & - & - & - & - & x & -  \\ [1ex] 
+\hline 
+\end{tabular}}
+
+\bigskip
+
+\resizebox{1.1\textwidth}{!}{
+\begin{tabular}{c c c c c c c c c c c c c c c c c c c c c c c c c c c c c} 
+\hline
+Test Case \# & NF1 & NF2 & NF3 & NF4 & NF5 & NF6 & NF7 & NF8 & NF9 & NF10 & NF11 & NF12 & NF13 & NF14 & NF15 & NF16 & NF17 & NF18 & NF19 & NF20 & NF21 \\ [0.5ex] 
+\hline 
+NF-1 & - & - & - & - & - & - & - & x & - & - & x & - & x & x & x & - & - & - & - & - & - \\ 
+NF-2 & - & - & - & - & - & - & - & x & - & - & x & - & x & x & x & - & - & - & - & - & - \\
+NF-3 & x & x & x & - & x & x & - & - & - & x & - & x & - & - & - & - & x & x & - & - & x \\
+NF-4 & - & - & - & - & x & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - \\
+NF-5 & - & - & - & - & x & - & x & - & - & - & - & - & - & - & - & - & - & - & - & - & - \\ [1ex]
+\hline 
+\end{tabular}
+}
+\newpage
+
+\section{Tests for Proof of Concept}
+
+Testing for proof of concept will be focused on ensuring that all animations behave as expected, as this also means all the relevant values are being updated correctly.
+
+\subsection{Testing for Animations}
+
+\begin{enumerate}
+
+\item{FC-1}
+
+Type: Functional, Manual
+                    
+Initial State: Ship is in centre of the screen
+                    
+Input: Left or right directional button on the keyboard
+                    
+Output: The spaceship moves in the desired direction when the arrow key is pressed, and immediately stops when the key is released
+                    
+How test will be performed: The left and right arrow keys will be pressed once the game starts, and the movement of the ship will be observed.
+                    
+\item{FC-2}
+
+Type: Functional, Manual
+
+Initial State: Spaceship is not shooting
+
+Input: \sout{The spacebar is pressed} \textcolor{red}{The left mouse click is pressed}
+
+Output: The spaceship shoots a projectile that will collide with an asteroid in its path and disappear. 
+
+How the test will be performed: \textcolor{red}{The left mouse click is pressed} once the game starts, and the projectile will be observed leaving the ship and colliding with any asteroids in its path.
+
+\item{FC-3}
+
+Type: Functional, Manual
+
+Initial State: Asteroids explode upon hitting the ship
+
+Input: The spaceship remains stationary and waits to collide with an asteroid
+
+Output: When an asteroid hits the spaceship it is destroyed in an explosion.
+
+How test will be performed: Once the game starts, the spaceship will be kept stationary until an asteroid hits
+
+\item{FC-4}
+
+Type: Functional, Manual
+
+Initial State: The health bar decreases in size when the ship is hit by an asteroid
+
+Input: The spaceship remains stationary and waits to collide with an asteroid
+
+Output: When an asteroid hits the spaceship the health bar will decrease in size
+
+How test will be performed: Once the game starts, the spaceship will be kept stationary until hit by an asteroid.
+
+\item{FC-5}
+
+Type: Functional, Manual
+
+Initial State: The ship explodes upon taking fatal damage from an asteroid
+
+Input: The spaceship remains stationary and waits to collide with an asteroid, multiple times until one hit is fatal
+
+Output: When an asteroid hits the spaceship and its health is lower than the damage the asteroid inflicts, the spaceship will explode.
+
+How test will be performed: Once the game starts, the spaceship will be kept stationary until hitting enough asteroids to cause fatal damage to it.
+
+\item{FC-6}
+
+Type: Functional, Manual
+
+Initial State: The ship starts with three lives
+
+Input: The spaceship remains stationary and waits to collide with an asteroid, multiple times until one hit is fatal. This is repeated 3 times.
+
+Output: When the ship takes fatal damage, it loses a life and the lives icon in the top right corner disappears. If this happens 3 times, the game finishes and returns you to the main menu.
+
+How test will be performed: Once the game starts, the spaceship will be kept stationary until hit by enough asteroids to cause fatal damage to it, 3 times in one game. 
+
+
+\end{enumerate}
+    
+\section{Comparison to Existing Implementation}    
+
+All of the tests for proof of concept will be used to compare our implementation with the existing implementation. This ensures that our project has all the same functionalities as the original implementation. If all the animations pass the test cases on both implementations we will know that our implementation is correct. 
+                
+\section{Unit Testing Plan}
+The unit testing of this project will be conducted using \sout{screenshots } \textcolor{red}{ pytest on certain functions if appropriate. As it stands right now, there is not any plan for such testing on any functions. Most testing will be conducted as black box, manual testing instead.}
+
+\subsection{Unit testing of internal functions}
+The unit tests for this project will be conducted using pytest. We will create unit tests that the different update functions that occur after the methods in each of the classes. We will input different keyboard inputs using pytest to test the results of each of the methods. We do not need to import anything as the modules would already have what is needed to them. The project will need to import pytest in order to test. We will be using code coverage metrics to see the code coverage. We will aim for 90\% code coverage.
+
+\subsection{Unit testing of output files}        
+\sout{To test the output on the window that the game creates we will use screenshots to compare different functions. We will screenshot a before and after of each of the methods to see the changes that each of the methods caused. In order for a test case to be successful it will have to have significant changes that coincide to what each of the keyboard inputs do.} \textcolor{red}{Our game does not produce any output files. Hence this section is irrelevant to the project.}
+
+\newpage
+
+\section{Appendix}
+
+This is a sample usability survey quiz that can be given to users to score the application. 
+\\
+\\Rate the game based on your experience playing it, from a scale of 1 to 10, with 1 being lowest, and 10 being the highest score. Compare this game experience to other low-end or 2D games that you have played with, or the original spaceshooter game (if you have previously played that).
+
+\begin{enumerate}
+\item{Ease of installation.}
+\\Score :     1    2    3    4    5    6    7    8    9    10
+
+\item{Gameplay}
+\\Score :    1    2    3    4    5    6    7    8    9    10
+
+\item{Graphics}
+\\Score :      1    2    3    4    5    6    7    8    9    10
+
+\item{Overall Satisfaction}
+\\Score :     1    2    3    4    5    6    7    8    9    10
+
+\end{enumerate}
+
+
+\subsection{Symbolic Parameters}
+
+The definition of the test cases will call for SYMBOLIC\_CONSTANTS.
+Their values are defined in this section for easy maintenance.
+    
+\begin{table}[H]
+\caption{\textbf{Table of symbolic constants}} \label{Table2}
+\begin{tabularx}{\textwidth}{p{3.5cm}X}
+\toprule
+\textbf{Abbreviation} & \textbf{Definition} \\
+\midrule
+\textcolor{red}{HEIGHT} & \textcolor{red}{600 pixel screen size for height} \\ \hline
+\textcolor{red}{WIDTH} & \textcolor{red}{800 pixel screen size for height} \\ \hline
+\textcolor{red}{PLAYER\_HEIGHT} & \textcolor{red}{The y-coordinates at which the sprite of the player is located in the game screen} \\ \hline
+EXEC-TIME & 0.3 seconds \\  
+\bottomrule
+\end{tabularx}
+
+\end{table}
+
+
+\subsection{Usability Survey Questions}
+
+\textcolor{red}{Here is a list of questions to potential users of the program to better assess the usability of the game.}
+
+\begin{enumerate}
+
+\item \textcolor{red}{What are some aspects of the game that you like?}
+\item \textcolor{red}{What are some changes you would like to see that will improve the game?}
+\item \textcolor{red}{How likely are you to play this game again? }
+\item \textcolor{red}{Were the instructions to install and execute the game difficult or did you need help?}
+\item \textcolor{red}{What is your immediate experience after playing the game compared to other games you played in the past?}
+
+\end{enumerate}
+
+\bibliographystyle{plainnat}
+
+\bibliography{SRS}
+
+\end{document}

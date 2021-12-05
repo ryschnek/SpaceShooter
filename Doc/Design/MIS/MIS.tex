@@ -1,0 +1,1324 @@
+\documentclass[12pt, titlepage]{article}
+
+\usepackage{fullpage}
+\usepackage[round]{natbib}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{xcolor}
+
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=red,
+    urlcolor=blue
+}
+\usepackage[round]{natbib}
+\usepackage{paralist}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage[normalem]{ulem}
+
+\newcounter{acnum}
+\newcommand{\actheacnum}{AC\theacnum}
+\newcommand{\acref}[1]{AC\ref{#1}}
+
+\newcounter{ucnum}
+\newcommand{\uctheucnum}{UC\theucnum}
+\newcommand{\uref}[1]{UC\ref{#1}}
+
+\newcounter{mnum}
+\newcommand{\mthemnum}{M\themnum}
+\newcommand{\mref}[1]{M\ref{#1}}
+
+\title{SE 3XA3: Module Internal Specification\\Spaceshooter Remix}
+
+\author{Team \#4, IRS Development
+		\\ Ibrahim Malik maliki2
+		\\ Ryan Schnekenburger schneker
+		\\ Saad Khan khans126
+}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\pagenumbering{roman}
+\tableofcontents
+\listoftables
+\listoffigures
+
+\newpage
+
+\begin{table}[hp]
+\caption{Revision History} \label{TblRevisionHistory}
+\begin{tabularx}{\textwidth}{llX}
+\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
+\midrule
+November 5, 2018 & Rev 0 & Authored by Ibrahim, Saad, Ryan\\
+December 5, 2018 & Rev1 & Updated document and added the changes recommended by TA.\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\newpage
+
+\pagenumbering{arabic}
+
+
+\section{Module Hierarchy} \label{SecMH}
+
+This section provides an overview of the module design. Modules are summarized
+in a hierarchy decomposed by secrets in Table \ref{TblMH}. The modules listed
+below, which are leaves in the hierarchy tree, are the modules that will
+actually, be implemented.
+
+\begin{description}
+\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Hardware-Hiding Module
+\item [\refstepcounter{mnum} \mthemnum \label{mHR}:] Behaviour-Hiding Module
+\item [\refstepcounter{mnum} \mthemnum \label{mHE}:] Software Decision Module
+\end{description}
+
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{p{0.3\textwidth} p{0.6\textwidth}}
+\toprule
+\textbf{Level 1} & \textbf{Level 2}\\
+\midrule
+
+{Hardware-Hiding Module} & ~ \\
+\midrule
+
+\multirow{3}{0.3\textwidth}{Behaviour-Hiding Module} 
+& Player\_Control module\\
+& Player\_Hide module\\
+& Player\_Move module\\
+& Player\_Shoot module\\
+& Player\_Ability module\\
+& Overheat\_Contol module\\
+& spawns module \\
+& Asteroids module\\
+& constants module\\
+\midrule
+
+\multirow{2}{0.3\textwidth}{Software Decision Module} 
+& Animations Module\\
+& IRS\_Space\_Shooter Module\\
+\bottomrule
+
+\end{tabular}
+\caption{Module Hierarchy}
+\label{TblMH}
+\end{table}
+
+
+\section {MIS of the Asteroids Module}
+
+\subsection {Uses}
+
+N/A
+
+\subsection {Syntax}
+
+\subsubsection {Exported Types}
+
+\subsubsection {Exported Access Programs}
+
+\begin{tabular}{| c | c | c | c |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+init & - &  - & -  \\
+\hline
+update & -  & - & -\\
+\hline
+rotate & - & - & -\\
+\hline
+\end{tabular}
+
+\subsection {Semantics}
+
+\subsubsection {State Variables}
+original : image
+\\spin : int
+\\rotspeed : int
+\\speed\_y : int
+\\speed\_x : int
+\\rect : image
+\\radius : int
+\\rect.x : int
+\\rect.y : int
+\\rect.top : int
+\\rect.left: int
+\\rect.right : int
+
+\subsubsection {Environmental variables}
+Screen: Display device
+\\Speakers: Device speakers 
+
+\subsubsection {Assumptions}
+The assumption is that the game constructor is already created and the asteroids are called upon after the user initiates the game. 
+
+\subsubsection {Access Routine Semantics}
+
+\noindent init():
+\begin{itemize}
+\item transition: This generates movements for all sprites and objects and defines the initial state of rotation, the speed of objects, spins and the area of movement within the screen. 
+\item exception: None
+\end{itemize}
+
+\noindent update():
+\begin{itemize}
+\item transition: This will update call on the rotate function to generate a new rotated position for the original asteroid and it will create new objects to appear on the screen as certain asteroids reach the edge of the screen. As an asteroid leaves the screen area, a new one is created in its place.
+\item exception: None
+\end{itemize}
+
+\noindent rotate():
+\begin{itemize}
+\item transition: This function creates a new image of the object when called upon in the exact same location of the original image except it is slightly rotated by a certain value. 
+\item exception: None
+\end{itemize}
+
+\newpage
+
+\section {MIS of the Spawns Module}
+
+\subsection {Uses}
+
+N/A
+
+\subsection {Syntax}
+
+\subsubsection {Exported Types}
+
+\subsubsection {Exported Access Programs}
+
+\begin{tabular}{| c | c | c | c |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+spawn\_bullet & - &  - & -  \\
+\hline
+update & - &  - & -  \\
+\hline
+spawn\_missle & -  & - & -\\
+\hline
+update & - &  - & -  \\
+\hline
+spawn\_powerup& - & - & -\\
+\hline
+update & - &  - & -  \\
+\hline
+\end{tabular}
+
+\subsection {Semantics}
+
+\subsubsection {State Variables}
+speed\_y : int
+\\speed\_x : int
+\\image : missile\_image, powerup\_image, bullet\_image
+\\radius : int
+\\rect.x : int
+\\rect.y : int
+\\rect.top : int
+\\rect.centerx : int
+\\rect.centery : int
+\\rect.left: int
+\\rect.right : int
+
+\subsubsection {Environmental variables}
+Screen: Display device
+\\Speakers: Device speakers 
+
+\subsubsection {Assumptions}
+The assumption is that the game constructor is already created and the spawns of in-game objects are generated after the user initiates the game. 
+
+\subsubsection {Access Routine Semantics}
+\noindent spawn\_bullet: 
+\begin{itemize}
+\item transition: This creates the sprite for the bullets in the place of the position of the player sprite. It also defines the speed with which the bullet is released and the image to use for this bullet.
+\item exception: None
+\end{itemize}
+
+\noindent update():
+\begin{itemize}
+\item transition: Once the bullet has crossed the height of the screen, it will be destroyed. It also specifies that the bullet will continue to move across the screen upwards until it has cleared the height of the screen.
+\item exception: None
+\end{itemize}
+
+\noindent spawn\_missile: 
+\begin{itemize}
+\item transition: This creates the sprite for the missile in the place of the position of the player sprite. It also defines the speed with which the missile is released and the image to use for this missile
+\item exception: None
+\end{itemize}
+
+\noindent update():
+\begin{itemize}
+\item transition: Once the missile has crossed the height of the screen, it will be destroyed. It also specifies that the missile will continue to move across the screen upwards until it has cleared the height of the screen.
+\item exception: None
+\end{itemize}
+
+\noindent spawn\_powerup: 
+\begin{itemize}
+\item transition: This creates a sprite for powerups. In this revision 0, there are 2 powerups. One is a shield and one is a level-up. A random choice chooses one of the two and generates it while assigning a speed for it to come down the screen with and it creates the object in the middle of the screen.
+\item exception: None
+\end{itemize}
+
+\noindent update():
+\begin{itemize}
+\item transition: This specifies that the powerup object will continue to move across the screen downwards.
+\item exception: None
+\end{itemize}
+
+\section{MIS of the Animations Module}
+
+\subsection {Uses}
+
+constants
+
+\subsection {Syntax}
+
+\subsubsection {Exported Types}
+
+\subsubsection {Exported Access Programs}
+
+\begin{tabular}{| c | c | c | c |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+main\_menu & -  & - & -\\
+\hline
+game\_over & int, int & - & -\\
+\hline
+put\_health\_bar & Screen, int, int, int & - & INVALID\_ARGUMENT\\
+\hline
+put\_overheat\_bar & Screen, int, int, int & - & INVALID\_ARGUMENT\\
+\hline
+put\_text & Screen, String, int, int, int & - & INVALID\_TYPE\\
+\hline
+put\_lives & Screen, int, int, int, pre-loaded png file & - & INVALID\_ARGUMENT\\
+\hline
+
+\end{tabular}
+\subsection {Semantics}
+
+\subsubsection {State Variables}
+All variables come from the constants module
+
+\subsubsection {Environmental variables}
+Screen: Display device
+Speakers: Device Speakers
+
+\subsubsection {Assumptions}
+The assumption is that the game constructor is already created.
+
+\noindent main\_menu():
+\begin{itemize}
+\item transition: Load song "menu.ogg" and play it through speakers. Load image "main.png" scale it to fit the length and height of the window listed in constants.Add the image to the screen.\\
+put\_text(Screen, "PRESS RETURN TO START", 30, WIDTH/2, HEIGHT/2)\\
+put\_text(Screen, "PRESS Q TO QUIT", 30, WIDTH/2, HEIGHT/2+40)\\
+event.type = KEYDOWN $\longrightarrow$ KEYDOWN = [RETURN] $\hookrightarrow$ continue $\vee$ \\
+KEYDOWN = [Q] $\hookrightarrow$ quit \\
+Load song "ready.ogg" and play it through speakers. Display a fully blue screen.\\
+put\_text(screen, "GET READY", 40, WIDTH/2, HEIGHT/2)
+
+\item exception: None
+\end{itemize}
+
+\noindent game\_over():
+\begin{itemize}
+\item transition: Load song "menu.ogg" and play it through speakers. Load image "black.png" scale it to fit the length and height of the window listed in constants. Add the image to the screen.\\
+put\_text(Screen, "GAME OVER!", 60, WIDTH/2, HEIGHT/4)\\
+put\_text(Screen, "PRESS R To Return to Menu", 60, WIDTH/2, HEIGHT/4+60)\\
+if newhighscore then put\_text(con.screen, "New High Score: " + str(highscore), 60, con.WIDTH/2, con.HEIGHT/4 + 120)\\
+event.type = KEYDOWN $\longrightarrow$ KEYDOWN = r $\hookrightarrow$ break $\vee$ \\
+KEYDOWN = [Q] $\hookrightarrow$ quit \\
+\item exception: None
+\end{itemize}
+
+\noindent put\_health\_bar(surf, x, y, pct):
+\begin{itemize}
+\item transition: 
+draw on the surf a rectangle x across the surf and y up the surf of length HEALTH\_HEIGHT and width HEALTH\_LENGTH with a white outline of thickness = 2. Fill the rectangle with a green box of height HEALTH\_HEIGHT and length pct/100 $\bullet$ HEALTH\_LENGTH.
+
+\item exception: 0 $<$ pct $\wedge$ pct $>$ 100 $\implies$ INVALID\_ARGUMENT
+\end{itemize}
+
+\noindent put\_overheat\_bar(surf, x, y, pct):
+\begin{itemize}
+\item transition: 
+draw on the surf a rectangle x across the surf and y up the screen of length OVERHEAT\_HEIGHT and width OVERHEAT\_LENGTH with a white outline of thickness = 2. Fill the rectangle with a red box of height OVERHEAT\_HEIGHT and length pct/100 $\bullet$ OVERHEAT\_LENGTH.
+
+\item exception: 0 $<$ pct $\wedge$ pct $>$ 100 $\implies$ INVALID\_ARGUMENT
+\end{itemize}
+
+\noindent put\_text(surf, text, size, x, y):
+\begin{itemize}
+\item transition: 
+Display white text on the surf of characters in text, size of size, and a starting position of x across the surf and y up the surf.
+
+\item exception: T : text $\neq$ String $\implies$ INVALID\_TYPE
+\end{itemize}
+
+\noindent put\_lives(surf, x, y, lives, img):
+\begin{itemize}
+\item transition: 
+Display the image lives times spaced 30 pixels apart where the first image is displayed x across the surf and y up the surf and all other images are displayed on the left.
+\item exception: 0 $<$ lives $\wedge$ lives $>$ 3 $\implies$ INVALID\_ARGUMENT
+\end{itemize}
+
+
+\textcolor{red}{Deleted this module}
+\section {MIS of the Player Module}
+
+\textcolor{red}{Split into more modules}
+
+\subsection {Uses}
+
+constants, spawns
+
+\subsection {Syntax}
+
+\subsubsection {Exported Types}
+
+\subsubsection {Exported Access Programs}
+
+\begin{tabular}{| c | c | c | c |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+init & set of sprites, set of sprites & Player & -  \\
+\hline
+update & - & - & OUT\_OF\_BOUNDS\_ERROR\\
+\hline
+shoot & - & - & -\\
+\hline
+ability & - & - & -\\
+\hline
+hide & - & - & -\\
+\hline
+\end{tabular}
+
+\subsection {Semantics}
+
+\subsubsection {State Variables}
+image : image\\
+radius : int\\
+rect : Rect $\implies$ from pygame website\\
+speedx : int\\
+hot : boolean\\
+health : int\\
+overheat: int\\
+shoot\_delay : int\\
+last\_shot : real\\
+lives : int\\
+hidden : boolean\\
+hide\_timer : real\\
+bullet : int\\
+bullet\_timer : real\\
+mouse\_down : boolean\\
+all\_sprites : set of sprites\\
+bullets : set of sprites\\
+
+
+\subsubsection {Environmental variables}
+Screen: Display device\\
+Speakers: Device Speakers
+
+\subsubsection {Assumptions}
+The assumption is that the game constructor is already created and the player is playing the game.
+
+\subsubsection {Access Routine Semantics}
+
+\noindent init(all\_sprites, bullets): 
+\begin{itemize}
+\item transition: \\
+image $\implies$ scaled player\_img to 50 by 38\\
+remove black background from the image\\
+rect $\implies$ the Rect object of image\\
+set the midpoint of the rectangle's x coordinate to half of the width of the screen\\
+set the bottom of the rectangle to be the height of the screen - 10\\
+speedx $\implies$ 0\\
+hot $\implies$ False\\
+health $\implies$ 100\\
+overheat $\implies$ 0\\
+shoot\_delay $\implies$ 250\\
+last\_shot $\implies$ current time in milliseconds\\
+lives $\implies$ 3\\
+hidden $\implies$ False\\
+hide\_timer $\implies$ current time in milliseconds\\
+bullet $\implies$ 1\\
+bullet\_timer $\implies$ current time in milliseconds\\
+mouse\_down $\implies$ False\\
+all\_sprites $\implies$ all\_sprites\\
+bullets $\implies$ bullets\\
+\item exception: None
+\end{itemize}
+
+\noindent shoot(): 
+\begin{itemize}
+\item transition: \\
+if bullet $\geq$ 2 $\wedge$ the current time $-$ bullet\_timer $>$ bulletUP\_TIME $\longrightarrow$ bullet is decremented $\wedge$ bullet\_time $\implies$ current time.\\\\
+if hidden = True $\wedge$ the current time $-$ hide\_timer $>$ 1000 $\longrightarrow$ hidden $\implies$ False $\wedge$ set the midpoint of rect to half the width of the screen $\wedge$ set the bottom of the rectangle to the height of the screen - 30\\\\
+speedx $\implies$ 0\\\\
+LEFT ARROW is pressed speedx $\implies$ -5\\
+RIGHT ARROW is pressed speedx $\implies$ 5\\\\
+hot $\longrightarrow$ overheat is decremented, overheat = 0 $\longrightarrow$ hot = False\\
+$\vee$\\
+LEFT CLICK is pressed $\longrightarrow$ mouse\_down = False $\wedge$ overheat $<$ 90 $\wedge$ hidden = False $\longrightarrow$ shoot(), mouse\_down $\implies$ True, overheat incremented by 20, overheat $>$ 90 $\longrightarrow$ hot $\implies$ True\\
+$\vee$\\
+LEFT CLICK is not pressed $\longrightarrow$ mouse\_down $\implies$ False, overheat $\neq$ 0 $\longrightarrow$ overheat is decremented, overheat = 0 $\longrightarrow$ hot $\implies$ False\\
+$\vee$\\
+pass\\\\
+rect moves to the right by speedx
+
+\item exception: The right-most coordinate of rect $>$ width $\vee$ The left-most coordinate of rect $<$ 0 $\implies$ OUT\_OF\_BOUNDS\_ERROR
+\end{itemize}
+
+\noindent update(): 
+\begin{itemize}
+\item transition: \\
+if bullet $\geq$ 2 $\wedge$ the current time $-$ bullet\_timer $>$ ABILITYUP\_TIME $\longrightarrow$ bullet is decremented $\wedge$ bullet\_time $\implies$ current time.\\\\
+if hidden = True $\wedge$ the current time $-$ hide\_timer $>$ 1000 $\longrightarrow$ hidden $\implies$ False $\wedge$ set the midpoint of rect to half the width of the screen $\wedge$ set the bottom of the rectangle to the height of the screen - 30\\\\
+speedx $\implies$ 0\\\\
+LEFT ARROW is pressed speedx $\implies$ -5\\
+RIGHT ARROW is pressed speedx $\implies$ 5\\\\
+hot $\longrightarrow$ overheat is decremented, overheat = 0 $\longrightarrow$ hot = False\\
+$\vee$\\
+LEFT CLICK is pressed $\longrightarrow$ mouse\_down = False $\wedge$ overheat $<$ 90 $\wedge$ hidden = False $\longrightarrow$ shoot(), mouse\_down $\implies$ True, overheat incremented by 20, overheat $>$ 90 $\longrightarrow$ hot $\implies$ True\\
+$\vee$\\
+LEFT CLICK is not pressed $\longrightarrow$ mouse\_down $\implies$ False, overheat $\neq$ 0 $\longrightarrow$ overheat is decremented, overheat = 0 $\longrightarrow$ hot $\implies$ False\\
+$\vee$\\
+pass\\\\
+rect moves to the right by speedx
+
+\item exception: The right-most coordinate of rect $>$ width $\vee$ The left-most coordinate of rect $<$ 0 $\implies$ OUT\_OF\_BOUNDS\_ERROR
+\end{itemize}
+
+\noindent shoot(): 
+\begin{itemize}
+\item transition:\\
+current time - last\_shot $>$ shoot\_delay $\longrightarrow$\\
+bullet = 1 $\longrightarrow$\\
+spawn a bullet a the top and the center of rect and add them to all\_sprites and bullets\\
+$\vee$\\
+bullet = 2 $\longrightarrow$\\
+spawn 2 bullets one to the left of the center of rect and another to the right of the center of rect and add them to all\_sprites and bullets\\
+$\vee$\\
+bullet = 3 $\Longrightarrow$\\
+spawn 2 bullets one to the left of the center of rect and another to the right of the center of rect. Spawn a missile on the center of rect and the top of rect. Add all three to bullets and all\_sprites.
+\item exception: None
+\end{itemize}
+
+\noindent ability(): 
+\begin{itemize}
+\item transition:\\
+increment bullet and update bullet\_timer to the current time
+\item exception: None
+\end{itemize}
+
+\noindent hide(): 
+\begin{itemize}
+\item transition:\\
+hidden $\implies$ True, update hide\_timer to the current time, update the center of rect to WIDTH / 2 in the x and HEIGHT + 200 in the y
+\item exception: None
+\end{itemize}
+
+\textcolor{red}{Additions Start here}
+\section {MIS of the Player\_Control Module}
+
+\subsection {Uses}
+Player\_Shoot, Player\_Hide, Player\_Ability, Player\_Move, Overheat\_Control, constants, spawns, 
+
+\subsection{Syntax}
+\subsubsection {Exported Types}
+T : player
+
+\subsubsection{Exported Access Programs}
+
+\begin{tabular}{| c | c | c | c |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+init & array of sprites, array of sprites & Player & OUTOFBOUNDS  \\
+\hline
+update & - & - & -\\
+\hline
+ability & - & - & -\\
+\hline 
+update\_Health & int & - & -\\
+\hline
+reset\_Health & - & - & -\\
+\hline
+update\_Lives & int & - & -\\
+\hline
+get\_hide & - & boolean & -\\
+\hline
+get\_Overheat & - & int & -\\
+\hline
+get\_Lives & - & int & -\\
+\hline
+
+\end{tabular}
+
+\subsubsection {State Variables}
+image : image\\
+rect : Rect\\
+health : int\\
+lives : int\\
+sprites : array of sprites\\
+bullets : array of sprites\\
+pos : move
+hide : hidden
+ovrht : Overheat
+shot : shoot
+power : ability
+
+\subsubsection {Environmental variables}
+Screen: Display device\\
+Speakers: Device Speakers
+
+\subsubsection {Assumptions}
+The assumption is that the game constructor is already created and the player is playing the game.
+
+\subsubsection {Access Routine Semantics}
+
+\noindent init(sprites, bullets): 
+\begin{itemize}
+\item transition:\\
+image $\implies$ player sprite\\
+rect $\implies$ rectangular outline of image\\
+center of rect $\implies$ WIDTH/2\\
+bottom of rect $\implies$ HEIGHT - 10\\
+health $\implies$ 100\\
+sprites $\implies$ sprites\\
+bullets $\implies$ bullets\\
+\item exception: None\\
+\end{itemize}
+
+noindent update(): 
+\begin{itemize}
+\item transition:\\
+power.get\_Power $\geq$ 2 $\implies$ power.powerdown\\
+hide.get\_hide $\implies$ hide.unhide(rect)
+pos.reset\_Speed\\
+if left click $\implies$ shot.det\_shoot\_T(sprites, bullets, rect, hide, ovrht, power.get\_Power())\\
+if not left click $\implies$ shot.det\_shoot\_F(ovrht)\\
+if a $\implies$ pos.move\_Left\\
+if d $\implies$ pos.move\_Right\\
+
+\item exception: if player is at position > WIDTH or player is at position < width $implies$ OUTOFBOUNDS\\
+\end{itemize}
+
+\noindent ability(): 
+\begin{itemize}
+\item transition:\\
+power.powerup()\\
+\item exception: None\\
+\end{itemize}
+
+\noindent update\_Health(aid): 
+\begin{itemize}
+\item transition:\\
+health $\implies$ health + aid\\
+\item exception: None\\
+\end{itemize}
+
+\noindent reset\_Health(aid): 
+\begin{itemize}
+\item transition:\\
+health $\implies$ 100\\
+\item exception: None\\
+\end{itemize}
+
+\noindent update\_Lives(life): 
+\begin{itemize}
+\item transition:\\
+lives $\implies$ lives + life\\
+\item exception: None\\
+\end{itemize}
+
+\noindent get\_Overheat(): 
+\begin{itemize}
+\item transition:\\
+return: ovrht.get\_Overheat()\\
+\item exception: None\\
+\end{itemize}
+
+\noindent get\_Health(): 
+\begin{itemize}
+\item transition:\\
+return: health\\
+\item exception: None\\
+\end{itemize}
+
+\noindent get\_hide(): 
+\begin{itemize}
+\item transition:\\
+return: hide.get\_hide()\\
+\item exception: None\\
+\end{itemize}
+
+\noindent get\_Lives(): 
+\begin{itemize}
+\item transition:\\
+return: lives\\
+\item exception: None\\
+\end{itemize}
+
+\noindent die(): 
+\begin{itemize}
+\item transition:\\
+hide.hide(rect)\\
+lives $\implies$ lives - 1\\
+health $\implies$ 100\\
+ovrht.reset\_Overheat()\\
+ovrht.cool()\\
+\item exception: None\\
+\end{itemize}
+
+\section {MIS of the Ability Module}
+
+\subsection {Uses}
+
+constants
+
+\subsection {Syntax}
+
+\subsubsection {Exported Types}
+T : ability
+\subsubsection {Exported Access Programs}
+
+\begin{tabular}{| c | c | c | c |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+init & - & ability & -  \\
+\hline
+powerdown & - & - & -\\
+\hline
+powerup & - & - & -\\
+\hline 
+get\_Power & - & int & -\\
+\hline
+\end{tabular}
+
+\subsection {Semantics}
+
+\subsubsection {State Variables}
+
+power : int
+power\_timer : int
+
+\subsubsection {Environmental variables}
+
+\subsubsection {Assumptions}
+The assumption is that the game constructor is already created and the player is playing the game.
+
+\subsubsection {Access Routine Semantics}
+
+\noindent init(): 
+\begin{itemize}
+\item transition:\\
+power $\implies$ 1\\
+power\_timer $\implies$ current time\\
+\item exception: None
+\end{itemize}
+
+\noindent powerdown(): 
+\begin{itemize}
+\item transition:\\
+if current time - power\_timer $>$ con.poweruptime $\implies$ power becomes power - 1\\
+power\_timer $\implies$ current time\\
+\item exception: None
+\end{itemize}
+
+\noindent powerup(): 
+\begin{itemize}
+\item transition:\\
+power $\implies$ power + 1\\
+power\_timer $\implies$ current time\\
+\item exception: None
+\end{itemize}
+
+\noindent get\_Power(): 
+\begin{itemize}
+\item transition:\\
+return: power\\
+\item exception: None
+\end{itemize}
+
+\section {MIS of the Move Module}
+
+\subsection {Uses}
+
+\subsection {Syntax}
+
+\subsubsection {Exported Types}
+T : move
+\subsubsection {Exported Access Programs}
+
+\begin{tabular}{| c | c | c | c |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+init & - & - & -  \\
+\hline
+move\_Left & - & - & -\\
+\hline
+move\_Right & - & - & -\\
+\hline 
+move\_Player & rect & - & -\\
+\hline
+reset\_Speed & - & - & -\\
+\hline
+get\_Speed & - & speed\_x & -\\
+\hline
+\end{tabular}
+
+\subsection {Semantics}
+
+\subsubsection {State Variables}
+
+speed\_x : int\\
+
+\subsubsection {Environmental variables}
+
+\subsubsection {Assumptions}
+The assumption is that the game constructor is already created and the player is playing the game.
+
+\subsubsection {Access Routine Semantics}
+
+\noindent init(): 
+\begin{itemize}
+\item transition:\\
+speed\_x $\implies$ 0\\
+\item exception: None
+\end{itemize}
+
+\noindent move\_Left():
+\begin{itemize}
+\item transition:\\
+speed\_x $\implies$ speed\_x - 5\\
+\item exception: None
+\end{itemize}
+
+\noindent move\_Right():
+\begin{itemize}
+\item transition:\\
+speed\_x $\implies$ speed\_x + 5\\
+\item exception: None
+\end{itemize}
+
+\noindent move\_Player(rect):
+\begin{itemize}
+\item transition:\\
+rect.x $\implies$ rect.x + speed\_x\\
+\item exception: None
+\end{itemize}
+
+\noindent reset\_Speed():
+\begin{itemize}
+\item transition:\\
+speed\_x $\implies$ 0\\
+\item exception: None
+\end{itemize}
+
+\noindent get\_Speed():
+\begin{itemize}
+\item transition:\\
+return: speed\_x\\
+\item exception: None
+\end{itemize}
+
+
+\section {MIS of the Player\_Hide Module}
+
+\subsection {Uses}
+
+constants
+
+\subsection {Syntax}
+
+\subsubsection {Exported Types}
+T : hidden
+
+\subsubsection {Exported Access Programs}
+
+\begin{tabular}{| c | c | c | c |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+init & - & hidden & -  \\
+\hline
+init & - & - & -\\
+\hline
+unhide & rect & - & -\\
+\hline
+hide & rect & - & -\\
+\hline
+get\_hide & - & int & -\\
+\hline
+\end{tabular}
+
+\subsection {Semantics}
+
+\subsubsection {State Variables}
+off : boolean\\
+hidden\_timer : int\\
+
+\subsubsection {Environmental variables}
+
+\subsubsection {Assumptions}
+The assumption is that the game constructor is already created and the player is playing the game.
+
+\subsubsection {Access Routine Semantics}
+
+\noindent init():
+\begin{itemize}
+\item transition:\\
+off = False\\
+hidden\_timer = current time\\
+\item exception: None
+\end{itemize}
+
+\noindent unhide(rect):
+\begin{itemize}
+\item transition:\\
+if current time - hide\_timer $>$ hidetime $\implies$ off becomes False and rect.center = WIDTH/2 and rect.bottom = HEIGHT - 30\\
+\item exception: None
+\end{itemize}
+
+\noindent hide(rect):
+\begin{itemize}
+\item transition:\\
+off $implies$ True\\
+hide\_timer $\implies$ current time\\
+rect.center = (WIDTH/2, HEIGHT + 200)\\
+\item exception: None
+\end{itemize}
+
+\noindent get\_hide():
+\begin{itemize}
+\item transition:\\
+return: off\\
+\item exception: None
+\end{itemize}
+
+\section {MIS of the Overheat\_Control Module}
+
+\subsection {Uses}
+
+constants, spawns
+
+\subsection {Syntax}
+
+\subsubsection {Exported Types}
+T : Overheat
+\subsubsection {Exported Access Programs}
+
+\begin{tabular}{| c | c | c | c |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+init & - & Overheat & -  \\
+\hline
+get\_Overheat & - & int & -\\
+\hline
+reset\_Overheat & - & - & -\\
+\hline 
+cool & - & - & -\\
+\hline
+update\_Overheat & int & - & OUTOFBOUNDS\\
+\hline
+update\_Hot & boolean & - & -\\
+\hline
+get\_Hot & - & boolean & -\\
+\end{tabular}
+
+\subsection {Semantics}
+
+\subsubsection {State Variables}
+overheat : int\\
+hot : boolean\\
+
+\subsubsection {Environmental variables}
+
+\subsubsection {Assumptions}
+The assumption is that the game constructor is already created and the player is playing the game.
+
+\subsubsection {Access Routine Semantics}
+
+\noindent init():
+\begin{itemize}
+\item transition:\\
+overheat $\implies$ 0\\
+hot $\implies$ False\\
+\item exception: None
+\end{itemize}
+
+\noindent get\_Overheat():
+\begin{itemize}
+\item transition:\\
+return: overheat\\
+\item exception: None
+\end{itemize}
+
+\noindent reset\_Overheat():
+\begin{itemize}
+\item transition:\\
+overheat $\implies$ 0\\
+\item exception: None
+\end{itemize}
+
+\noindent cool():
+\begin{itemize}
+\item transition:\\
+hot $\implies$ False\\
+\item exception: None
+\end{itemize}
+
+\noindent update\_Overheat(d0):
+\begin{itemize}
+\item transition:\\
+overheat $\implies$ overheat + d0
+\item exception: if overheat $<$ 0 then overheat becomes 0 or if overheat is $>$ than 100 overheat = 100
+\end{itemize}
+
+\noindent update\_Hot(update):
+\begin{itemize}
+\item transition:\\
+hot $\implies$ update\\
+\item exception: None
+\end{itemize}
+
+\noindent get\_Hot():
+\begin{itemize}
+\item transition:\\
+return: Hot\\
+\item exception: None
+\end{itemize}
+
+\section {MIS of the Player\_Shoot Module}
+
+\subsection {Uses}
+
+spawns, constants, Overheat\_Control, Player\_Hide
+
+\subsection {Syntax}
+
+\subsubsection {Exported Types}
+T : shoot
+\subsubsection {Exported Access Programs}
+
+\begin{tabular}{| c | c | c | c |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+init & - & shoot & -  \\
+\hline
+det\_shoot\_T & array of sprites, array of sprites, rect, Hidden, Overheat, int & - & -\\
+\hline
+det\_shoot\_F & Overheat & - & -\\
+\hline
+fire & rect, array of sprites, array of bullets, power & - & -\\
+\hline
+\end{tabular}
+
+\subsection {Semantics}
+
+\subsubsection {State Variables}
+mouse\_down : boolean\\
+
+\subsubsection {Environmental variables}
+Screen: Display device\\
+Speakers: Device Speakers
+
+\subsubsection {Assumptions}
+The assumption is that the game constructor is already created and the player is playing the game.
+
+\subsubsection {Access Routine Semantics}
+
+\noindent init():
+\begin{itemize}
+\item transition:\\
+last\_shot $\implies$ current time\\
+mouse\_down $\implies$ False\\
+\item exception: None
+\end{itemize}
+
+\noindent det\_shoot\_T(sprites, bullets, rect, hide, ovrht, power):
+\begin{itemize}
+\item transition:\\
+if ovrht.get\_Hot() then ovrht.update\_Overheat(-1) and if ovrht.get\_Overheat() = 0 then ovrht.update\_Hot(False)\\
+or if mouse\_down = False and ovrht.get\_Overheat $<$ 90 and hide.get\_hide() = False\\ then mouse\_down = True and ovrht.update\_Overheat(20) and fire(rect, sprites, bullets, power) and\\ if ovrht.get\_Overheat() $>$ 90 then ovrht.update\_Hot(True)\\
+or if hide.get\_hide() then fire(rect, sprites, bullets, power)
+or ovrht.update\_Overheat(-1)
+
+Word explanation
+if the overheat bar is hot then decrement it by one and check to see if it is now zero if it is set the overheat bar to cool and exit. If the mouse has not been pressed right before the shot and overheat is less than 90 and the player is not hidden the mouse\_down is set to true, the overheat goes up by 20 and fire if the overheat bar is greater than 90 it is hot. If the player is hidden fire without overheat penalty and exit. If nothing above is true decrement the overheat bar by 1.
+\item exception: None
+\end{itemize}
+
+\noindent det\_shoot\_F(ovrht):
+\begin{itemize}
+\item transition:\\
+mouse\_down $\implies$ False
+if ovrht.get\_Overheat() $\neq$ 0 then ovrht.update\_Overheat(-1)\\
+or ovrht.update\_Hot(False)
+\item exception: None
+\end{itemize}
+
+\noindent fire(rect, sprites, bullets, power):
+\begin{itemize}
+\item transition:\\
+if power = 1 then spawn 1 bullet at the top center of the ship\\
+if power = 2 then spawn 2 bullets one at the left of the ship another at the right of the ship\\
+if power = 3 then spawn 2 bullets and one missile. The missile at the top center of the ship and the bullets in the same place as power = 2.\\
+if power $\geq$ 4 then spawn 3 missiles each in the same spawn points as in power = 3
+\item exception: None
+\end{itemize}
+
+
+\textcolor{red}{Additions Stop here}
+
+\section {MIS of the Destroy Module}
+
+\subsection {Uses}
+
+constants
+
+\subsection {Syntax}
+
+\subsubsection {Exported Types}
+T : Destroy
+\subsubsection {Exported Access Programs}
+
+\begin{tabular}{| c | c | c | c |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+init & (int, int), int & Destroy & -  \\
+\hline
+update & - & - & -\\
+\hline
+\end{tabular}
+
+\subsection {Semantics}
+
+\subsubsection {State Variables}
+image : image\\
+rect : Rect\\
+cur\_frame : int\\
+frames : int\\
+updated : real\\
+size : int\\
+
+\subsubsection {Environmental variables}
+Screen: Display device\\
+Speakers: Device Speakers
+
+\subsubsection {Assumptions}
+The assumption is that the game constructor is already created and the player is playing the game.
+
+\subsubsection {Access Routine Semantics}
+
+\noindent init(center, size): 
+\begin{itemize}
+\item transition:\\
+size $\implies$ size\\
+image $\implies$ explosion.animation[size][0]
+rect $\implies$ rectangular borders of image
+center of rect becomes the inputted center coordinate\\
+frames $\implies$ 75\\
+updated $\implies$ current time
+\item exception: None
+\end{itemize}
+
+\noindent update(): 
+\begin{itemize}
+\item transition:\\
+current time - updated $>$ frames $\longrightarrow$\\updated = current time, cur\_frame is incremented by 1, current frame = length of the explosion animation is of the given size $\longrightarrow$ remove the sprite $\vee$\\image $\implies$ the explosion animation of the size at the current frame, \\center $\implies$ the center point of the rect, \\rect $\implies$ the rectangular borders of the new image, \\the center of the rect would then become center
+\item exception: None
+\end{itemize}
+
+
+\section {MIS of the Constants Module}
+
+\subsection {Uses}
+
+None
+
+\subsection {Syntax}
+
+\subsubsection {Exported Types}
+
+\subsubsection {Exported Access Programs}
+
+\begin{tabular}{| c | c | c | c |}
+	\hline
+	\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+	\hline
+	init & - & - & -  \\
+	\hline
+\end{tabular}
+
+\subsection {Semantics}
+
+\subsubsection {State Variables}
+WHITE : (int, int, int)\\
+BLACK : (int, int, int)\\
+RED : (int, int, int)\\
+GREEN : (int, int, int)\\
+BLUE : (int, int, int)\\
+YELLOW : (int,int,int)\\
+WIDTH : int\\
+HEIGHT : int\\
+screen : display\\
+HEALTH\_LENGTH : int\\
+HEALTH\_HEIGHT : int\\
+OVERHEAT\_LENGTH : int\\
+OVERHEAT\_HEIGHT : int\\
+FPS : int\\
+ABILITYUP\_TIME : int\\
+BAR\_LENGTH : int\\
+BAR\_HEIGHT : int\\
+images : path to file\\
+sounds : path to file\\
+font\_name : Font\\
+player\_img : image\\
+player\_mini\_img : image\\
+explosion\_animation : hash of array of int
+
+\subsubsection {Environmental variables}
+Screen: Display device\\
+Speakers: Device Speakers
+
+\subsubsection {Access Routine Semantics}
+
+\noindent init(center, size): 
+\begin{itemize}
+	\item transition:\\
+	WHITE : (255, 255, 255)\\
+	BLACK : (0, 0, 0)
+	RED : (255, 0, 0)\\
+	GREEN : (0, 255, 0)\\
+	BLUE : (0, 0, 255)\\
+	YELLOW : (255, 255, 0)\\
+	WIDTH : 480\\
+	HEIGHT : 600\\
+	screen : display of width WIDTH and HEIGHT height resizeable\\
+	HEALTH\_LENGTH : 100\\
+	HEALTH\_HEIGHT : 10\\
+	OVERHEAT\_LENGTH : 100\\
+	OVERHEAT\_HEIGHT : 10\\
+	FPS : 60\\
+	ABILITYUP\_TIME : 5000\\
+	BAR\_LENGTH : 100\\
+	BAR\_HEIGHT : 10\\
+	images : path to objects file\\
+	sounds : path to sounds file\\
+	font\_name : Arial\\
+	player\_img : loaded image of 'playership1\_orange.png'\\
+	player\_mini\_img : scaled image of player\_img by 25 by 19\\
+	remove black background from player\_mini\_image\\
+	explosion\_animation : insert 9 explosions scaled by 75 by 75 to the first location, 9 explosions scaled by 32 by 32 in the second location, and 9 explosions to the third location. The indexing of the file location depend on the number in the file name.\\
+	
+	\item exception: None
+	
+\end{itemize}
+
+\section {MIS of the IRS Space Shooter Module}
+
+\subsection {Uses}
+pygame, random, Animations, spawns, Asteroids, Player, Destroy
+
+\subsection {Syntax}
+
+\subsubsection {Exported Types}
+
+\subsubsection {Exported Access Programs}
+
+\begin{tabular}{| c | c | c | c |}
+	\hline
+	\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+	\hline
+	init & - & - & -  \\
+	\hline
+\end{tabular}
+
+\subsection {Semantics}
+
+\subsubsection {State Variables}
+images : str\\
+sounds : str\\
+WHITE : (int, int, int)\\
+BLACK : (int, int, int)\\
+RED : (int, int, int)\\
+GREEN : (int, int, int)\\
+BLUE : (int, int, int)\\
+YELLOW : (int,int,int)\\
+WIDTH : int\\
+HEIGHT : int\\
+clock : int\\
+background : img \\
+player\_img : img \\
+player\_mini\_img : img \\
+bullet\_img : img \\
+missle\_img : img \\
+meteor\_images : img \\
+explosion\_animation : img \\
+powerup\_images : img \\
+shooting\_sound : sound \\
+missle\_sound : sound \\
+expl\_sound : sound \\
+all\_sprites : sprite \\
+player : player \\
+mobs : sprite \\
+
+\subsubsection {Environmental variables}
+Screen: Display device\\
+Speakers: Device Speakers
+
+\subsubsection {Access Routine Semantics}
+ 
+\begin{itemize}
+	\item transition:\\
+	images : path to objects file\\
+	sounds : path to sounds file\\
+	WHITE : (255, 255, 255)\\
+	BLACK : (0, 0, 0)
+	RED : (255, 0, 0)\\
+	GREEN : (0, 255, 0)\\
+	BLUE : (0, 0, 255)\\
+	YELLOW : (255, 255, 0)\\
+	WIDTH : 480\\
+	HEIGHT : 600\\
+	clock : game clock \\
+	background : background image \\
+	player\_img : player sprite \\
+	player\_mini\_img : scaled image of player \\ sprite to 25x19 \\
+	bullet\_img : bullet sprite \\
+	missle\_img : missle sprite \\
+	meteor\_images : array of meteor sprites \\
+	explosion\_animation : array of explosion sprites \\
+	powerup\_images : powerup sprites \\
+	shooting\_sound :shooting sound bytes \\
+	missle\_sound : missle sound bytes \\
+	expl\_sound : explosion sound bytes \\
+	all\_sprites : array of all sprites \\
+	player :instance of the player \\
+	mobs : array of asteroids \\
+	
+	\item exception: None
+	
+\end{itemize}
+
+\end{document}
